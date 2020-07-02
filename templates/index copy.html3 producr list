@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Syamsuri Fashion</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="grid-container">
+        <header class="headerLogin">
+            <div class="account">
+                <a href="login">Log In</a> to your Account
+            </div>
+            <div class="trol">
+                <a href="cart">Cart</a>
+                <a href="search">Find Item</a>
+            </div>
+
+        </header>
+        <header class="header">
+            <div class="brand">
+                <a href="index.html">Syamsuri Fashion</a> 
+            </div>
+            <div class="header-link">
+                <a href="categories.html">Categories</a>
+                <a href="about.html">About Us</a>
+                <a href="contact.html">Contact Us</a>
+            </div>
+        </header>
+        <!-- <aside>
+            Categories
+        </aside> -->
+        <main class="main">
+            <div class="content">
+                <ul class="products">
+                    <li>
+                        <div class="product">
+                            <img class='product-image' src="../public/images/images/nik1.jpg" alt="nik1.jpg" />
+                            <div class="product-name">
+                                <a href="product.html">Slim Shirt Casual</a> 
+                            </div>
+                            <div class="product-cat">Shirt</div>
+                            <div class="product-price"><b>IDR</b> 190,000</div>
+                            <div class="product-rating">4.5 Stars ( 10 Reviews )</div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="product">
+                            <img class='product-image' src="../public/images/images/nik1.jpg" alt="nik1.jpg" />
+                            <div class="product-name">
+                                <a href="product.html">Slim Shirt Casual</a> 
+                            </div>
+                            <div class="product-cat">Shirt</div>
+                            <div class="product-price"><b>IDR</b> 190,000</div>
+                            <div class="product-rating">4.5 Stars ( 18 Reviews )</div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="product">
+                            <img class='product-image' src="../public/images/images/nik1.jpg" alt="nik1.jpg" />
+                            <div class="product-name">
+                                <a href="product.html">Slim Shirt Casual</a> 
+                            </div>
+                            <div class="product-cat">Shirt</div>
+                            <div class="product-price"><b>IDR</b> 190,000</div>
+                            <div class="product-rating">4.5 Stars ( 18 Reviews )</div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="product">
+                            <img class='product-image' src="../public/images/images/nik1.jpg" alt="nik1.jpg" />
+                            <div class="product-name">
+                                <a href="product.html">Slim Shirt Casual</a> 
+                            </div>
+                            <div class="product-cat">Shirt</div>
+                            <div class="product-price"><b>IDR</b> 190,000</div>
+                            <div class="product-rating">4.5 Stars ( 18 Reviews )</div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="product">
+                            <img class='product-image' src="../public/images/images/nik1.jpg" alt="nik1.jpg" />
+                            <div class="product-name">
+                                <a href="product.html">Slim Shirt Casual</a> 
+                            </div>
+                            <div class="product-cat">Shirt</div>
+                            <div class="product-price"><b>IDR</b> 190,000</div>
+                            <div class="product-rating">4.5 Stars ( 18 Reviews )</div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </main>
+        <footer class="footer">
+            All Right Reserved
+        </footer>
+    </div>
+</body>
+</html>

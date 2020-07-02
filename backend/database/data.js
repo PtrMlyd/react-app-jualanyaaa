@@ -1,0 +1,80 @@
+const data = {
+    Products : [
+        {
+            id: "1",
+            name : "Casual Slim Shirt Deep Gray Edition",
+            image : '/images/products/nik1.jpg',
+            categories : 'Shirt',
+            brand : 'H&M',
+            price : 190000,
+            inStock : 0,
+            description : 'model ini sangat cocok untuk dgunakan untuk Kerja, Pesta , dan lain-lain',
+            rating : 4,
+            reviews : 10,
+        },
+        {
+            id: "2",
+            name : "Casual Shirt Blue Ocean Edition",
+            image : '/images/products/nike2.jpg',
+            categories : 'Shirt',
+            brand : 'Crocodile',
+            price : 140000,
+            inStock : 6,
+            description : 'shirt yang berbau busana eropa dengan gaya yang terkesan santai tetapi dengan mementingkan fashion',
+            rating : 3,
+            reviews : 20,
+        },
+        {
+            id: "3",
+            name : "Japanase Casual Slim Shirt Navy Edition",
+            image : '/images/products/nike3.jpg',
+            categories : 'Shirt',
+            brand : 'Kamikaze',
+            price : 210000,
+            inStock : 6,
+            description : 'ini adalah shirt yang diambil dari model busan jepang yang digabung dengan desain zaman sekarang',
+            rating : 5,
+            reviews : 40,
+        },
+        {
+            id: "4",
+            name : "Japanase Casual Slim Shirt Navy Edition",
+            image : '/images/products/koko1.jpg',
+            categories : 'Koko',
+            brand : 'Kamikaze',
+            price : 250000,
+            inStock : 8,
+            description : 'ini adalah shirt yang diambil dari model busan jepang yang digabung dengan desain zaman sekarang',
+            rating : 5,
+            reviews : 40,
+        },
+        {
+            id: "5",
+            name : "Japanase Casual Slim Shirt Navy Edition",
+            image : '/images/products/koko2.jpg',
+            categories : 'Koko',
+            brand : 'KurtaSyam',
+            price : 110000,
+            inStock : 2,
+            description : 'ini adalah shirt yang diambil dari model busan jepang yang digabung dengan desain zaman sekarang',
+            rating : 5,
+            reviews : 40,
+        },
+        {
+            id: "6",
+            name : "Muslim Man Shirt with a caligraphy shoulder ",
+            image : '/images/products/koko3.jpg',
+            categories : 'Koko',
+            brand : 'Syamsuri Fashion',
+            price : 350000,
+            inStock : 3,
+            description : 'ini adalah shirt yang diambil dari model busan jepang yang digabung dengan desain zaman sekarang',
+            rating : 5,
+            reviews : 40,
+        }
+    ]
+}
+
+module.exports = data
+   
+

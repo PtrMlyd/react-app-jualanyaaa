@@ -1,0 +1,72 @@
+body{
+    font: 1.6rem;
+    height: 100vh;
+    margin: 0;
+}
+.root{
+    
+}
+
+.grid-container{
+    display: grid;
+    grid-template-areas: 
+    'headerLogin'
+    'header'
+    'main'
+    'footer';
+    grid-template-columns: 1fr;
+    grid-template-rows: 30px 5rem 1fr 5rem;
+    height: 100%;
+}
+.headerLogin{
+    grid-area: headerLogin;
+    background-color: rgb(37, 37, 39);
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    
+}
+.account a, .trol a{ 
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
+.trol a{
+padding: .5rem;
+}
+
+.header{
+    grid-area: header;
+    background-color: rgb(37, 37, 39);
+    display: flex;
+    justify-content: space-between; /*untuk menempelkann item di kanan dan kiri*/
+    align-items: center;
+    color: white;
+}
+.brand a{
+    text-decoration: none;
+    color: white;
+    font-size: 1.7rem;
+    font-weight: bold;
+}
+.header-link a{
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    font-size: 1rem;
+    justify-content: space-between;
+    padding: 1rem;
+}
+.main{
+    grid-area: main;
+}
+.footer{
+    grid-area: footer;
+    background-color: rgb(37, 37, 39);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
