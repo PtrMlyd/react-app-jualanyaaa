@@ -5,8 +5,8 @@ dist
 /dist
 node_modules
 backend/node_modules/**
-uploads/*.jpg
-uploads/*.png
+/uploads
+
 
 /.pnp
 .pnp.js
