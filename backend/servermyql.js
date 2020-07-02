@@ -4,6 +4,9 @@ const db = require('./config/mongo')
 const bodyParser = require('body-parser')
 const {PORT} = require('./config/string')
 
+const path = require('path')
+
+
 const app = express();
 
 app.get('/', ( req, res) => {
@@ -28,22 +31,14 @@ app.get('/api/config/paypal', (req, res ) => {
     res.send(PAYPAL_CLIENT_ID)
 })
 
+// 6. uploadImg - use the upload route
+const uploadRouter = require('./routes/uploadRout')
 
-// app.get('/api/products', ( req, res) => {
-//     res.send(data.Products)
-// })
+app.use('/api/uploads', uploadRouter)
+// 7. uploadImg - go to manage order screen
 
-// app.get(`/api/products/:id`, ( req, res) => {
-//     const productId = req.params.id;
-
-//     const product = data.Products.find( x => x.id === productId )
-    
-//     if(product)
-//         res.send(product)
-//     else
-//         res.status(404).send( { msg: "PRODUCT NOT FOUND" } )
-// })
-
+// 14. uploadImg - make file go public / bulid environment 
+app.use('/uploads', express.static(path.join(__dirname, '/../uploads' )))
 
 app.listen(PORT, () => {
     console.log(`Server is Running on http://localhost:${PORT}`)
