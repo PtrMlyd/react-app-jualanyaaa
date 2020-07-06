@@ -1,11 +1,12 @@
 const express =require('express')
 const multer =require('multer')
+// const multer =require('')
 
 // 2. uploadImg - create disk storage with Date.now().jpg as filename
 const storage = multer.diskStorage({
     // param 1 - destination, param2 - file name
     destination( req, file, cb){
-        cb(null, 'uploads/')
+        cb(null, '../../frontend/public/images/products')
     }, filename( req, file, cb){
         cb( null, `${Date.now()}.jpg`)
     }

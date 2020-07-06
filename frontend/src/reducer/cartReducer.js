@@ -1,4 +1,4 @@
-const { CART_ADD_ITEM, CART_REMOVE_ITEM, CART_SAVE_SHIPPING, CART_SAVE_PAYMENT } = require("./constant/cart");
+const { CART_ADD_ITEM, CART_REMOVE_ITEM, CART_SAVE_SHIPPING, CART_SAVE_PAYMENT } = require("../constant/cart");
 
 function cartReducer (state = { cartItems: [], shipping: {}, payment : {} }, action ){
     switch (action.type) {

@@ -1,133 +1,156 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
-import HomeScreen from './page/HomeScreen';
-import ProductScreen from './page/ProductScreen';
+import ShopScreen from './screens/user/ShopScreen';
+import ProductScreen from './screens/user/ProductScreen';
 import { Route, Link, useHistory } from 'react-router-dom';
-import ShoppiingCartScreen from './page/ShoppingCartScreen';
-import SigninScreen from './page/SigninScreen';
+import ShoppiingCartScreen from './screens/user/ShoppingCartScreen';
+import SigninScreen from './screens/user/SigninScreen';
 import { useSelector, useDispatch } from 'react-redux';
-import RegisterScreen from './page/RegisterScreen';
-import ManageProductScreen from './page/ManageProduct';
-import ShippingScreen from './page/ShippingScreen';
-import OrderScreen from './page/OrderScreen';
-import PaymentScreen from './page/PaymentScreen';
-import PlaceOrderScreen from './page/PlaceOrderScreen';
-import ManageOrderScreen from './page/ManageOrder';
-import UserProfile from './page/UserProfileScreen';
+import RegisterScreen from './screens/user/RegisterScreen';
+import ManageProductScreen from './screens/admin/ManageProduct';
+import ShippingScreen from './screens/user/ShippingScreen';
+import OrderScreen from './screens/user/OrderScreen';
+import PaymentScreen from './screens/user/PaymentScreen';
+import PlaceOrderScreen from './screens/user/PlaceOrderScreen';
+import ManageOrderScreen from './screens/admin/ManageOrder';
+import UserProfile from './screens/user/UserProfileScreen';
 import { logOut } from './actions/userAction';
+import HomeScreen from './screens/user/HomeScreen';
+import Testing from './components/Banner';
+import header from './components/HeaderTesting';
+import selectBrand from './screens/admin/ManageBrand'
+import selectCat from './screens/admin/ManageCategory'
 
 
+import { listProducts } from './actions/productAction';
+
+import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
+import { listBrand } from './actions/detailAction';
 
 function App(props) {
 
   const userSignin = useSelector( state => state.userSignin);
   const { userInfo } = userSignin;
+  
+  const productList = useSelector( state => state.productList );
+  const {products, loading, error} = productList
 
-  const openMenu=()=>{
-    document.querySelector(".sidebar").classList.add("open")
-  }
+  const brandList = useSelector(state => state.brandList)
+  const {loading:loadingBrand, error : errorBrand, brands, success : successBrand} = brandList
 
-  const closeMenu=()=>{
-    document.querySelector(".sidebar").classList.remove("open")
-  }
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
-  const onLogOut = () => {
-    dispatch(logOut())
-    }
+  // fetchDate from server // sama dengan component did mount
+  useEffect( () => {
+      dispatch(listProducts())
+      dispatch(listBrand())
+      return () => {
+      }
+  }, [])
 
-  return (
-      <div className="grid-container">
-          <header className="headerLogin">
-              <div className="account">
-                  { 
-                    userInfo ? 
-                        <div>
-                            <Link className='profile' to='/profile/'> {userInfo.username} </Link>
-                            / <button onClick={onLogOut}>Log Out</button>
-                        </div> 
-                        :
-                        <Link className='profile'to="/signin">Log In</Link>
-                  }
-              </div>
-              <div className="trol">
+
+    const onLogOut = () => {
+        dispatch(logOut())  
+    }  
+
+    const [dropdownOpen, setDropdownOpen] = useState(false);
+
+    const toggle = () => setDropdownOpen(prevState => !prevState);
+
+    return (
+      <div className="grid-container">          
+            <header className="header">
+                <div className="brand">
+                    <Link to='/' >Jualan Yaaa </Link> 
+                </div>
+                <div className="header-link">
+                    <a href="/shop">Shop</a>
+                </div>
+                <div className="trol">
+                    <Link to='/cart'>
+                         <i className="fa fa-shopping-cart" ></i> 
+                    </Link>
                     { 
-                        userInfo && userInfo.isAdmin && (
-                            <div>
-                                <Link to="/manageproduct">Manage Product </Link> 
-                                <Link to="/manageorder" >Manage Order</Link> 
-                                <Link to="/cart" >Cart</Link> 
+                        userInfo && !userInfo.isAdmin  ? 
+                        (
+                            <div className='dropdown'> 
+                             <  a href="#"> 
+                                    <i className="fa fa-user-circle" isOpen={dropdownOpen} toggle={toggle} ></i> 
+                                </a>
+                                <ul className="dropdown-content">
+                                    <li>
+                                        <Link className='profile' to='/profile/'> Profile </Link>
+                                        {/* <Link onMouseEnter={onLogOut}>
+                                            Log Out
+                                        </Link> */}
+                                    </li>
+                                </ul>
                             </div>
-                        ) 
-                    }
-                    { userInfo && !userInfo.isAdmin && (
-                        <div>
-                            <Link to="/cart" >Cart</Link> 
-                        </div>
-
-                    )}
+                        ) : userInfo && userInfo.isAdmin ?
+                        (
+                            <div className='dropdown'>
+                                <div isOpen={dropdownOpen} toggle={toggle}> 
+                                    <i className="fa fa-user-circle"  ></i> 
+                                </div>
+                                <ul className="dropdown-content">
+                                    <li>
+                                        <Link className='profile' to='/profile/'> Profile </Link>
+                                        <Link to="/manageproduct">Manage Product </Link> 
+                                        <Link to="/manageorder" >Manage Order</Link> 
+                                        {/* <Link onClick={onLogOut}>Log Out</Link> */}
+                                    </li>
+                                </ul>
+                            </div>     
+                        ) : 
+                        <Link className='logina' to="/signin"><i className="fa fa-user-circle"></i></Link>  
+                    }            
               </div>
           </header>
-          
-          <header className="header">
-              <div className="brand">
-                  <button onClick={openMenu}>
-                      &#9776; 
-                  </button>
-                  <Link to='/' >Jualan Yaaa </Link> 
-              </div>
-              <div className="header-link">
-                  <a href="career.html">Career</a>
-                  <a href="about.html">About Us</a>
-                  <a href="contact.html">Contact Us</a>
-              </div>
-          </header>
-          <aside className="sidebar">
-              <h4>Categories</h4>
-              <button className="sidebar-close" onClick={closeMenu}>x</button>
-              <ul className='categories'>
-                  <li>
-                      <Link to="/category/Shirt">Koko</Link>
-                  </li>
-                  <li>
-                      <Link to="/category/Gamis">Gamis</Link>
-                  </li>
-                  <li>
-                      <Link to="/category/Peci">Peci</Link>
-                  </li>
-                  <li>
-                      <Link to="/category/Sangkok">SLinkngkok</Link>
-                  </li>
-                      
-              </ul>
-          </aside>
           <main className="main">
-              <div className="content">
-
-
-                    <Route path='category/:id' component={HomeScreen} />
-                    <Route path='/profile' component={UserProfile} />
-                    <Route path='/manageorder' component={ManageOrderScreen} />
-                    <Route path='/order/:id' component={OrderScreen} />  
-                    <Route path='/place-order' component={PlaceOrderScreen} />
-                    <Route path='/payment' component={PaymentScreen} />
-                    <Route path='/shipping' component={ShippingScreen} />
-                    <Route path='/manageproduct' component={ManageProductScreen} />
-                    <Route path='/product/:id' component={ProductScreen} />
-                    <Route path='/register' component={RegisterScreen} />
-                    <Route path='/signin' component={SigninScreen} />
-                    <Route path='/cart/:id?' component={ShoppiingCartScreen} />
-                    <Route path='/' exact={true} component={HomeScreen} />
-
-
-              </div>
+                <Route path='/profile' component={UserProfile} />
+                <Route path='/manageorder' component={ManageOrderScreen} />
+                <Route path='/order/:id' component={OrderScreen} />  
+                <Route path='/place-order' component={PlaceOrderScreen} />
+                <Route path='/payment' component={PaymentScreen} />
+                <Route path='/shipping' component={ShippingScreen} />
+                <Route path='/managebrand' component={selectBrand} />
+                <Route path='/manageproduct' component={ManageProductScreen} />
+                <Route path='/managecat' component={selectCat} />
+                <Route path='/product/:id' component={ProductScreen} />
+                <Route path='/register' component={RegisterScreen} />
+                <Route path='/signin' component={SigninScreen} />
+                <Route path='/cart/:id?' component={ShoppiingCartScreen} />
+                <Route path='/category/:id' component={ShopScreen} />
+                <Route path='/shop' component={ShopScreen} />
+                <Route path='/testing' component={Testing} />
+                <Route path='/header' component={header} />
+                <Route path='/' exact={true} component={HomeScreen} />
           </main>
-          <footer className="footer">
+            <div className='product-brand'>
+                {
+                loading ? <div> Loading . . . </div>
+                :
+                error ? <div> {error}</div> :
+                    <div className="jumbotron-footer-container">
+                        {  
+                            brands ?  brands.map( brand =>       
+                                <div className="jumbotron-footer-item" key={brand._id} >
+                                    <img src={ brand.image } alt={brand.name} />
+                                </div>
+                                ) :
+                            <div>
+                                Error
+                            </div> 
+                        }
+                    </div>
+                 }       
+            </div>
+            <footer className="footer">
               All Right Reserved
-          </footer>
-      </div>
-  );
+             </footer>
+         </div>
+    );
 }
 
 export default App;

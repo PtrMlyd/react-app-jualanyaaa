@@ -16,13 +16,15 @@ app.get('/', ( req, res) => {
 app.use( express.urlencoded({ extended : true } ) )
 app.use( bodyParser.json() )
 
-const userRouter = require('./routes/user')
-const productRouter = require('./routes/product')
-const orderRouter = require('./routes/order')
+const userRouter = require('./routes/userRoute')
+const productRouter = require('./routes/productRoute')
+const orderRouter = require('./routes/orderRoute')
+const detailRouter = require('./routes/detailsRoute')
 
 app.use('/api/users', userRouter)
 app.use('/api/products', productRouter)
 app.use('/api/orders', orderRouter)
+app.use('/api/details', detailRouter)
 
 const PAYPAL_CLIENT_ID = 'AYvCSNnbVLnuzwopaBrYjtGePl0WDhL_Aeo8nOG8vFEQ6cMtmi1QgefWvgaQsG53U8b2-QzdoTIsv6QI' || 'sb'
 
@@ -38,7 +40,7 @@ app.use('/api/uploads', uploadRouter)
 // 7. uploadImg - go to manage order screen
 
 // 14. uploadImg - make file go public / bulid environment 
-app.use('/uploads', express.static(path.join(__dirname, '/../uploads' )))
+app.use('/products', express.static(path.join(__dirname, 'products' )))
 
 app.listen(PORT, () => {
     console.log(`Server is Running on http://localhost:${PORT}`)

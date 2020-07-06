@@ -17,7 +17,7 @@ import {
     ORDER_DELETE_REQUEST,
     ORDER_DELETE_SUCCESS,
     ORDER_DELETE_FAILED
- } from "./constant/order";
+ } from "../constant/order";
 
 function createOrderReducer(state = {}, action ) {
     

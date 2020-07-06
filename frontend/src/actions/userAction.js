@@ -12,7 +12,7 @@ const {
     USER_UPDATE_REQUEST, 
     USER_UPDATE_FAILED, 
     USER_UPDATE_SUCCESS,
-    USER_LOGOUT } = require("../reducer/constant/user");
+    USER_LOGOUT } = require("../constant/user");
 
 const signin = ( username, password) => async (dispatch) => {
     dispatch({ type : USER_SIGNIN_REQUEST, payload : { username, password }});
