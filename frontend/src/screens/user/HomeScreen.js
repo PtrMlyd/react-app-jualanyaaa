@@ -5,6 +5,7 @@ import { listProducts } from '../../actions/productAction';
 import Rating from '../../components/rating'
 import HBanner from '../../components/Banner';
 
+
 function HomeScreen (props) {
     // reactRedux
     const productList = useSelector( state => state.productList );
@@ -21,6 +22,7 @@ function HomeScreen (props) {
         }
     }, [category])
 
+
     return <div className="content">
      
             <div className="jumbotron1-container">
@@ -30,25 +32,28 @@ function HomeScreen (props) {
             <div className='jb-cat'>
                 BROWSE YOUR CHOICE
             </div>
+            <div className="jumbotron2-container">
             {
                 loading ? <div> Loading . . . </div>
                 :
                 error ? <div> {error}</div> :
-                    <div className="jumbotron2-container">
-                        {
-                            products ?  products.map( product =>       
-                                <div className="jumbotron2-item" key={product._id} >
-                                    <Link to = {`/product/${ product._id }`}>
-                                        <h2>{product.category}</h2>
-                                    </Link>
+                    <div className="jumbotron2-center">
+                        <div className="jumbotron2-item" >
+                            {
+                                products ?  products.map( product =>       
+                                <div className="jumbotron2-content"> 
+                                    <img key={product._id} src={product.image} alt={product.name}/>
                                 </div>
                                 ) :
-                            <div>
-                                Error
-                            </div> 
-                        }
+                                <div>
+                                    Error
+                                </div> 
+                            }
+                       
+                        </div>
                     </div>
             }
+            </div>
             <div className='jb-cat'>
                 <Link to='/shop'>
                     SHOP NOW

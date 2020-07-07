@@ -164,31 +164,48 @@ body{
   font-weight: bold;
 }
 
-.jumbotron2-container {
+.jumbotron2-container{
+  /* border: .3rem solid rgb(251, 13, 13); */
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-between;
-
-  border: .3rem solid rgb(255, 158, 2);
-  margin: 5rem 10rem 5rem 10rem;
+  justify-content: space-evenly;
+  margin-top: 30px;
+  
 }
-
-.jumbotron2-item  {
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  /* border: #c0c0c0 1px solid; */
-  margin-top: 2rem;
-  margin-bottom: 2rem;
-}
-
-.jumbotron2-item:hover {
-  border: #c0c0c0 1px solid;
-}
-.jumbotron2-item h2 {
+.jumbotron2-center {
+  /* border: .3rem solid rgb(251, 13, 13); */
   width: 100%;
-  text-align: center;
+}
+
+.jumbotron2-item {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px,1fr));
+  grid-template-rows: minmax(100px, auto);
+  margin: 30px;
+  grid-auto-flow: dense;
+  grid-gap:  20px; 
+  place-items: center;
+
+}
+.jumbotron2-content{
+  background: #333333;
+  transition: 0.2s;
+  color: white;
+  
+}
+
+.jumbotron2-content:hover{
+  background: gray;
+}
+
+.jumbotron2-content img{
+  width: 200px;
+  margin-bottom: 10px;
+
+}
+
+.jumbotron2-content:nth-child(even){
+  grid-column: span 1;
+  grid-row: span 1;
 }
 
 .jumbotron3{
@@ -774,16 +791,3 @@ margin-right: 3rem;
 /* FOOTER SCREEN END */
 
 /* for tablet start */
-@media only screen and (max-width:60%){
-  /* untuk mengubah jikalau windownya kita kecilkan */
- 
-  .brand{
-      height: 35px;
-      width: 90px;
-  }
- .inibuatproduct{
-   width: 100%;
- }
-
-}
-/* tablet end */
