@@ -10,7 +10,7 @@ function ManageProductScreen (props) {
 
     // create a product
     const [name, setName ] = useState('');
-    const [image, setImage ] = useState('');    
+    const [image, setImage ] = useState('');        
     const [category, setCat] = useState('');      
     const [price, setPrice] = useState(0);    
     const [inStock, setInStock] = useState(0);    

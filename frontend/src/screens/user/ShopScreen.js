@@ -48,9 +48,9 @@ function ShopScreen (props) {
                     <div className="label">
                         <label >PRODUCT FILTER</label>
                     </div>
-                    <div>
+                    <div className='categories'>
                         {products.map(item =>
-                            <label onMouseEnter={ (e) => setKey(e.target.value)} onClick={onSubmitClick} value={item.category}> - {item.category}</label>
+                            <label key={item._id} onMouseEnter={ (e) => setKey(e.target.value)} onClick={onSubmitClick} value={item.category}> - {item.category}</label>
                                 )}
                     </div>
                 </div>
@@ -58,12 +58,12 @@ function ShopScreen (props) {
 
             <div className="colmid">
                 <div className='search-box'>
-                    <div>
-                        <h2>
+                    <div className="labels">
+                        <label>
                         {
-                            category ? {category} : "All Products"
+                            category ? category : "All Products"
                         }
-                        </h2>
+                        </label>
                     </div>
                     
                     <div className="filter"> 
