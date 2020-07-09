@@ -19,12 +19,17 @@ app.use( bodyParser.json() )
 const userRouter = require('./routes/userRoute')
 const productRouter = require('./routes/productRoute')
 const orderRouter = require('./routes/orderRoute')
-const detailRouter = require('./routes/detailsRoute')
+const bannerRouter = require('./routes/bannerRoute')
+const brandRouter = require('./routes/brandRoute')
+const catRouter = require('./routes/catRoute')
+
 
 app.use('/api/users', userRouter)
 app.use('/api/products', productRouter)
 app.use('/api/orders', orderRouter)
-app.use('/api/details', detailRouter)
+app.use('/api/banners', bannerRouter)
+app.use('/api/brands', brandRouter)
+app.use('/api/categories', catRouter)
 
 const PAYPAL_CLIENT_ID = 'AYvCSNnbVLnuzwopaBrYjtGePl0WDhL_Aeo8nOG8vFEQ6cMtmi1QgefWvgaQsG53U8b2-QzdoTIsv6QI' || 'sb'
 

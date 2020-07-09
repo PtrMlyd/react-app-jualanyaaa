@@ -18,6 +18,14 @@ const productSchema = new mongoose.Schema({
     rating : { type : Number, required : true, default: 0 },
     onReviews : { type : Number, required : true, default: 0 },
     reviews : [reviewSchema],
+    brands : {
+        type : mongoose.Schema.Types.ObjectId,
+        ref: 'brands'
+    },
+    categories : {
+        type : mongoose.Schema.Types.ObjectId,
+        ref : 'cats'
+    }
 })
 
 const productModel = mongoose.model("products", productSchema );

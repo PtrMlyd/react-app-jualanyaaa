@@ -40,19 +40,25 @@ function brandListReducer(state = { brands: [] }, action ) {
             return state
     }
 }
-function brandSaveReducer(state = { brands: {} }, action ) {
-    
+function brandSaveReducer(state = {}, action ) {
     switch (action.type) {
         case  BRAND_SAVE_REQUEST:
             return { loading : true, brand:{} }
         case BRAND_SAVE_SUCCESS:
-            return { loading : false, brand: action.payload }
+            return { loading : false, brand: action.payload, success : true }
         case BRAND_SAVE_FAILED:
             return { loading : false, error: action.payload };
         default:
             return state
     }
 }
+
+
+
+
+
+
+
 function catListReducer(state = {   cats:[] }, action ) {
     
     switch (action.type) {

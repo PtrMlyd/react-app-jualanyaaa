@@ -115,9 +115,6 @@ function PlaceOrderScreen (props){
             <div className="placeorder-action">
                 <ul>
                     <li>
-                        <button className="button primary full-width" onClick={placeOrderHandler} > Place Order</button>
-                    </li>
-                    <li>
                         <h3>
                             Order Summary
                         </h3>
@@ -138,6 +135,14 @@ function PlaceOrderScreen (props){
                         <div> Order Total</div>
                         <div> IDR {totalPrice}</div>
                     </li>
+                    {
+                        loading ? <div>Loading . . .</div> :
+                        error ? <div> {error} </div> :
+                        <li>
+                            <button className="button primary full-width" onClick={placeOrderHandler} > Place Order</button>
+                        </li>
+                    }
+                    
                 </ul>
             </div>
         </div>  

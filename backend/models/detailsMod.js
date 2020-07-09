@@ -24,6 +24,7 @@ const brandModel = mongoose.model("brands", brandSchema );
 const catSchema = new mongoose.Schema({
 
     name : { type : String, unique: true, required:true},
+    image : { type: String, unique: true},
     hash : {type : String, default: "cat"}
 },{
     timestamps : false

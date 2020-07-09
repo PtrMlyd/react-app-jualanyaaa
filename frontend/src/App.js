@@ -1,61 +1,55 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
+import { Route, Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+// import { logOut } from './actions/userAction';
+// import { listProducts } from './actions/productAction';
+import { listBrand } from './actions/brandAction';
+
+import Banner from './components/Banner';
+import header from './components/carousel';
+
 import './App.css';
+import RegisterScreen from './screens/user/RegisterScreen';
+import SigninScreen from './screens/user/SigninScreen';
+import HomeScreen from './screens/user/HomeScreen';
 import ShopScreen from './screens/user/ShopScreen';
 import ProductScreen from './screens/user/ProductScreen';
-import { Route, Link, useHistory } from 'react-router-dom';
 import ShoppiingCartScreen from './screens/user/ShoppingCartScreen';
-import SigninScreen from './screens/user/SigninScreen';
-import { useSelector, useDispatch } from 'react-redux';
-import RegisterScreen from './screens/user/RegisterScreen';
-import ManageProductScreen from './screens/admin/ManageProduct';
 import ShippingScreen from './screens/user/ShippingScreen';
-import OrderScreen from './screens/user/OrderScreen';
 import PaymentScreen from './screens/user/PaymentScreen';
 import PlaceOrderScreen from './screens/user/PlaceOrderScreen';
-import ManageOrderScreen from './screens/admin/ManageOrder';
+import OrderScreen from './screens/user/OrderScreen';
 import UserProfile from './screens/user/UserProfileScreen';
-import { logOut } from './actions/userAction';
-import HomeScreen from './screens/user/HomeScreen';
-import Testing from './components/Banner';
-import header from './components/carousel';
-import selectBrand from './screens/admin/ManageBrand'
-import selectCat from './screens/admin/ManageCategory'
+import ManageBrand from './screens/admin/ManageBrand'
+import ManageCategory from './screens/admin/ManageCategory'
+import ManageProductScreen from './screens/admin/ManageProduct';
+import ManageOrderScreen from './screens/admin/ManageOrder';
 
 
-import { listProducts } from './actions/productAction';
 
-import { listBrand } from './actions/detailAction';
 
 function App(props) {
 
   const userSignin = useSelector( state => state.userSignin);
   const { userInfo } = userSignin;
-  
-  const productList = useSelector( state => state.productList );
-  const {products, loading, error} = productList
 
   const brandList = useSelector(state => state.brandList)
-  const {loading:loadingBrand, error : errorBrand, brands, success : successBrand} = brandList
+  const {loading:loadingBrand, error : errorBrand, brands} = brandList
 
 
   const dispatch = useDispatch();
 
   // fetchDate from server // sama dengan component did mount
   useEffect( () => {
-      dispatch(listProducts())
       dispatch(listBrand())
       return () => {
       }
   }, [])
 
 
-    const onLogOut = () => {
-        dispatch(logOut())  
-    }  
-
-    const [dropdownOpen, setDropdownOpen] = useState(false);
-
-    const toggle = () => setDropdownOpen(prevState => !prevState);
+    // const onLogOut = () => {
+    //     dispatch(logOut())  
+    // }  
 
     return (
       <div className="grid-container">          
@@ -70,6 +64,7 @@ function App(props) {
                     <Link to='/cart'>
                          <i className="fa fa-shopping-cart" ></i> 
                     </Link>
+                    <i className="fas fa-bell"></i>
                     { 
                         userInfo && !userInfo.isAdmin  ? 
                         (
@@ -114,24 +109,24 @@ function App(props) {
                 <Route path='/place-order' component={PlaceOrderScreen} />
                 <Route path='/payment' component={PaymentScreen} />
                 <Route path='/shipping' component={ShippingScreen} />
-                <Route path='/managebrand' component={selectBrand} />
+                <Route path='/managebrand' component={ManageBrand} />
                 <Route path='/manageproduct' component={ManageProductScreen} />
-                <Route path='/managecat' component={selectCat} />
+                <Route path='/managecategory' component={ManageCategory} />
                 <Route path='/product/:id' component={ProductScreen} />
                 <Route path='/register' component={RegisterScreen} />
                 <Route path='/signin' component={SigninScreen} />
                 <Route path='/cart/:id?' component={ShoppiingCartScreen} />
                 <Route path='/category/:id' component={ShopScreen} />
                 <Route path='/shop' component={ShopScreen} />
-                <Route path='/testing' component={Testing} />
+                <Route path='/banner' component={Banner} />
                 <Route path='/header' component={header} />
                 <Route path='/' exact={true} component={HomeScreen} />
           </main>
             <div className='product-brand'>
                 {
-                loading ? <div> Loading . . . </div>
+                loadingBrand ? <div> Loading . . . </div>
                 :
-                error ? <div> {error}</div> :
+                errorBrand ? <div> {errorBrand}</div> :
                     <div className="jumbotron-footer-container">
                         {  
                             brands ?  brands.map( brand =>       

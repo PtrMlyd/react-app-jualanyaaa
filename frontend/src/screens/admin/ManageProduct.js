@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
 import { saveProduct, listProducts, deleteProduct } from '../../actions/productAction';
-import Axios from 'axios';
-import { listBrand } from '../../actions/detailAction';
 
 
 function ManageProductScreen (props) {
@@ -17,7 +14,7 @@ function ManageProductScreen (props) {
     const [description, setDescription] = useState('');   
 
     // 8. uploadImg - create state hooks for upload
-    const [ uploading, setUploading] = useState(false)
+    // const [ uploading, setUploading] = useState(false)
     
     const productSave = useSelector( state => state.productSave);
     const { loading : loadingSave, success: successSave, error: errorSave }= productSave
@@ -71,6 +68,7 @@ function ManageProductScreen (props) {
             inStock,
             description
         }))
+        props.history.push('/managebrand')
     }
 
     const onDeleteClick = (product) => {
@@ -175,43 +173,51 @@ function ManageProductScreen (props) {
                         </ul>
                 </div>
             }
-
-
-            <div className='product-list'>
-                <table>
-                    <thead>
-                        <tr>
-                            <th className="tableid">ID</th>
-                            <th>name</th>
-                            <th>image</th>
-                            <th>Price</th>
-                            <th>Category</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {
-                            products.map( product => (
-                                <tr key= {product._id}>
-                                    <td>{ product._id } </td>
-                                    <td>{ product.name } </td>
-                                    <td><img src={ product.image } alt={product.name} height='100px' /> </td>
-                                    <td>{ product.price } </td>
-                                    <td>{ product.category } </td>
-                                    <td className="prodact">
-                                        <button className="button secondary" onClick={ () => openModal(product)}>
-                                            Edit
-                                        </button>
-                                        <button className='button secondary' onClick={ () => onDeleteClick(product)}>
-                                            Delete
-                                        </button>
-                                    </td>
-                                </tr>
-                            )  )
-                        }
-                    </tbody>
-                </table>
-            </div>
+            {
+                loading ? <div> Loading . . . </div> :
+                error ? <div> {error} </div> :
+                <div className='product-list'>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th className="tableid">ID</th>
+                                <th>name</th>
+                                <th>image</th>
+                                <th>Price</th>
+                                <th>Category</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {
+                                products.map( product => (
+                                    <tr key= {product._id}>
+                                        <td>{ product._id } </td>
+                                        <td>{ product.name } </td>
+                                        <td><img src={ product.image } alt={product.name} height='100px' /> </td>
+                                        <td>{ product.price } </td>
+                                        <td>{ product.category } </td>
+                                        <td className="prodact">
+                                            <button className="button secondary" onClick={ () => openModal(product)}>
+                                                Edit
+                                            </button>
+                                            {
+                                                loadingDelete ? <div>Loading Deletion . . .</div>
+                                                :
+                                                errorDelete ? <div>{errorDelete}</div>
+                                                :
+                                                <button className='button secondary' onClick={ () => onDeleteClick(product)}>
+                                                    Delete
+                                                </button>
+                                            }
+                                        </td>
+                                    </tr>
+                                )  )
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
         </div>
         
     )

@@ -1,4 +1,21 @@
-import { PRODUCT_LIST_REQUEST, PRODUCT_LIST_SUCCESS, PRODUCT_LIST_FAILED, PRODUCT_DETAILS_REQUEST, PRODUCT_DETAILS_SUCCESS, PRODUCT_DETAILS_FAILED, PRODUCT_SAVE_REQUEST, PRODUCT_SAVE_SUCCESS, PRODUCT_SAVE_FAILED, PRODUCT_DELETE_REQUEST, PRODUCT_DELETE_SUCCESS, PRODUCT_DELETE_FAILED, PRODUCT_REVIEW_SAVE_REQUEST, PRODUCT_REVIEW_SAVE_SUCCESS, PRODUCT_REVIEW_SAVE_FAILED, PRODUCT_REVIEW_SAVE_RESET } from "../constant/product";
+import { 
+    PRODUCT_LIST_REQUEST, 
+    PRODUCT_LIST_SUCCESS, 
+    PRODUCT_LIST_FAILED, 
+    PRODUCT_DETAILS_REQUEST, 
+    PRODUCT_DETAILS_SUCCESS, 
+    PRODUCT_DETAILS_FAILED, 
+    PRODUCT_SAVE_REQUEST, 
+    PRODUCT_SAVE_SUCCESS, 
+    PRODUCT_SAVE_FAILED, 
+    PRODUCT_DELETE_REQUEST, 
+    PRODUCT_DELETE_SUCCESS, 
+    PRODUCT_DELETE_FAILED, 
+    PRODUCT_REVIEW_SAVE_REQUEST, 
+    PRODUCT_REVIEW_SAVE_SUCCESS, 
+    PRODUCT_REVIEW_SAVE_FAILED, 
+    PRODUCT_REVIEW_SAVE_RESET 
+} from "../constant/product";
 
 function productListReducer(state = { products: [] }, action ) {
     
@@ -13,7 +30,7 @@ function productListReducer(state = { products: [] }, action ) {
             return state
     }
 }
-function productDetailReducer(state = { product: { reviews: [] } }, action ) {
+function productDetailReducer(state = { product: { reviews: [], brands :[] } }, action ) {
     
     switch (action.type) {
         case PRODUCT_DETAILS_REQUEST:
@@ -27,7 +44,7 @@ function productDetailReducer(state = { product: { reviews: [] } }, action ) {
     }
 }
 
-function productSaveReducer(state = { product: {} }, action ) {
+function productSaveReducer(state = { product: { brands :[] } }, action ) {
     
     switch (action.type) {
         case PRODUCT_SAVE_REQUEST:
@@ -41,7 +58,7 @@ function productSaveReducer(state = { product: {} }, action ) {
     }
 }
 
-function productDeleteReducer(state = { product: {} }, action ) {
+function productDeleteReducer(state = { product: { brands :[] } }, action ) {
     
     switch (action.type) {
         case PRODUCT_DELETE_REQUEST:

@@ -7,7 +7,7 @@ import {
 } from 'reactstrap';
   import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { listBanner } from '../actions/detailAction';
+import { listBanner } from '../actions/bannerAction';
 
 const Banner = (props) => {
 
@@ -58,6 +58,10 @@ const Banner = (props) => {
   });
 
   return (
+    loading ? <div>loading . . .</div> 
+    :
+    error ? <div>{error}</div> 
+    :
     <Carousel
       activeIndex={activeIndex}
       next={next}

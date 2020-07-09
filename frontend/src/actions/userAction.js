@@ -1,5 +1,3 @@
-import { Redirect, useHistory } from "react-router-dom";
-
 const { default: Axios } = require("axios");
 const Cookie =require('js-cookie-remove-all');
 const { 

@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { listProducts } from '../../actions/productAction';
-import Rating from '../../components/rating'
+// import Rating from '../../components/rating'
 import HBanner from '../../components/Banner';
 
 
@@ -41,8 +41,8 @@ function HomeScreen (props) {
                         <div className="jumbotron2-item" >
                             {
                                 products ?  products.map( product =>       
-                                <div className="jumbotron2-content"> 
-                                    <img key={product._id} src={product.image} alt={product.name}/>
+                                <div className="jumbotron2-content" key={product._id}> 
+                                    <img  src={product.image} alt={product.name}/>
                                 </div>
                                 ) :
                                 <div>

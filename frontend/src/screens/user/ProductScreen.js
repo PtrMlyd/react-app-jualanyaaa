@@ -103,7 +103,7 @@ function ProductScreen (props) {
                                     {[...Array(product.inStock).keys()].map( x => 
                                     <option key={ x + 1 } value={ x + 1 }> { x + 1} </option>)} </select> */}
                                 <i className="fa fa-minus-square" />
-                                <input className='butqty' />
+                                <input className='butqty' onChange = { (e) => {setQty( e.target.value)}} />
                                 <i className="fa fa-plus-square" />
                             </li>
                         </ul>

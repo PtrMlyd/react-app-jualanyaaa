@@ -57,7 +57,7 @@ body{
   color:rgb(102, 101, 101);
 }
 
-.fa  {
+.fa, .fas  {
   font-size: 1.5rem;
   padding: 1.2rem;
   color: #808080;
@@ -70,24 +70,32 @@ body{
   display: flex;
   height: fit-content;
   color: #203040;
+  /* border: #203040 1px solid; */
 }
 .trol a{
   font-size: 2rem;
   color: #203040;
 }
 .dropdown{
-  display: inline-block;
-  position: relative;
+  /* display: inline-block; */
+  /* position: relative; */
 }
 
 .dropdown-content{
   position: absolute;
   display: none;
-  right:0;
   list-style-type: none;
-  z-index: 3;
+  z-index: 1;
   background-color: #64686d;
   padding: 0;
+  right:0;
+  width: 200px;
+}
+.dropdown-content li {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: .4rem;
+  
 }
 
 .dropdown:hover .dropdown-content{

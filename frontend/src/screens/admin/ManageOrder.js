@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { deleteOrder, listOrders } from '../../actions/orderAction';
@@ -29,6 +29,7 @@ function ManageOrderScreen (props) {
     }
 
     return loading ? <div>Loading . . .</div> :
+        error ? <div>{error}</div> : 
         <div className="content content-margined">
             <div className="order-header">
                 <h3>
@@ -63,12 +64,19 @@ function ManageOrderScreen (props) {
                                     <td>{ order.paidAt } </td>
                                     <td>{ order.isDelivered.toString() } </td>
                                     <td>{ order.deliveredAt } </td>
-                                    <td className="prodact">
-                                        <Link to={'/order/' + order._id} className='button secondary'>Details</Link>
-                                        <button type='button' className='button secondary ' onClick={ () => onDeleteClick(order)}>
-                                            Delete
-                                        </button>
-                                    </td>
+                                    {
+                                        loadingDelete ? <div>Loading Deletion . . .</div>
+                                        :
+                                        errorDelete ? <div>{errorDelete}</div>
+                                        :
+                                        <td className="prodact">
+                                            <Link to={'/order/' + order._id} className='button secondary'>Details</Link>
+                                            <button type='button' className='button secondary ' onClick={ () => onDeleteClick(order)}>
+                                                Delete
+                                            </button>
+                                        </td>
+                                    }
+                                    
                                 </tr>
                             )  )
                         }
