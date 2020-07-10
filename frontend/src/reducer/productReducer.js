@@ -30,7 +30,7 @@ function productListReducer(state = { products: [] }, action ) {
             return state
     }
 }
-function productDetailReducer(state = { product: { reviews: [], brands :[] } }, action ) {
+function productDetailReducer(state = { product: { reviews: []} }, action ) {
     
     switch (action.type) {
         case PRODUCT_DETAILS_REQUEST:
@@ -44,7 +44,7 @@ function productDetailReducer(state = { product: { reviews: [], brands :[] } }, 
     }
 }
 
-function productSaveReducer(state = { product: { brands :[] } }, action ) {
+function productSaveReducer(state = { product: {} }, action ) {
     
     switch (action.type) {
         case PRODUCT_SAVE_REQUEST:
@@ -58,7 +58,7 @@ function productSaveReducer(state = { product: { brands :[] } }, action ) {
     }
 }
 
-function productDeleteReducer(state = { product: { brands :[] } }, action ) {
+function productDeleteReducer(state = { product: {} }, action ) {
     
     switch (action.type) {
         case PRODUCT_DELETE_REQUEST:

@@ -45,8 +45,6 @@ router.post('/',isAuth,isAdmin, async (req, res) => {
         name : req.body.name,
         image : req.body.image,
         category : req.body.category,
-        brand : req.body.brand,
-        brand_image : req.body.brand_image,
         price : req.body.price,
         inStock : req.body.inStock,
         description : req.body.description,
@@ -67,8 +65,6 @@ router.put('/:id',isAuth,isAdmin, async (req, res) => {
         product.name = req.body.name,
         product.image = req.body.image,
         product.category = req.body.category,
-        product.brand = req.body.brand,
-        product.brand_image = req.body.brand_image,
         product.price = req.body.price,
         product.inStock = req.body.inStock,
         product.description = req.body.description

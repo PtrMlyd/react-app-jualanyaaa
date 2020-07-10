@@ -14,7 +14,7 @@ router.get('/',  async (req, res ) => {
     }
 })
 
-router.post('/brands',  async (req, res) => {
+router.post('/',  async (req, res) => {
     
     const brand = new brandModel({
         name: req.body.name,
@@ -35,12 +35,38 @@ router.post('/brands',  async (req, res) => {
     }
 })
 
+router.put('/:id', async (req, res) => {
+    const getBrandId = req.params.id
+    const brand = await brandModel.findById(getBrandId)
+    
+    if(brand){
+        brand.name = req.body.name,
+        brand.image = req.body.image
+
+        const updateBrand = await brand.save()
+
+        if(updateBrand){
+            return res.status(201).send({ message: 'Brand Updated!', data : updateBrand})
+        }
+    }
+    return res.status(500).send({ msg : 'Error while Updating Brand.'})
+})
+
+router.delete('/:id', async (req, res) => {
+    const getBrandId = req.params.id  
+    const brand = await brandModel.findOne( { _id : getBrandId})
+
+    if(brand){
+        await brand.remove()
+        return res.send( { message : 'Brand Deleted !'})
+    }
+    return res.status(500).send({ msg : 'Error while deleting Brand.'})
+    
+})
+
 
 module.exports = router;
-// const express = require('express')
-// const { catModel} = require('../models/detailsMod')
 
-// const router = express.Router();
 
 
 

@@ -11,7 +11,16 @@ import {
     CAT_LIST_FAILED,
     BRAND_SAVE_FAILED,
     BRAND_SAVE_REQUEST,
-    BRAND_SAVE_SUCCESS
+    BRAND_SAVE_SUCCESS,
+    BRAND_DELETE_REQUEST,
+    BRAND_DELETE_SUCCESS,
+    BRAND_DELETE_FAILED,
+    CAT_DELETE_REQUEST,
+    CAT_DELETE_SUCCESS,
+    CAT_DELETE_FAILED,
+    CAT_SAVE_REQUEST,
+    CAT_SAVE_SUCCESS,
+    CAT_SAVE_FAILED
 } from "../constant/detail";
 
 function bannerListReducer(state = { banners: [] }, action ) {
@@ -40,7 +49,7 @@ function brandListReducer(state = { brands: [] }, action ) {
             return state
     }
 }
-function brandSaveReducer(state = {}, action ) {
+function brandSaveReducer(state = { brand :{}}, action ) {
     switch (action.type) {
         case  BRAND_SAVE_REQUEST:
             return { loading : true, brand:{} }
@@ -53,6 +62,18 @@ function brandSaveReducer(state = {}, action ) {
     }
 }
 
+function brandDeleteReducer ( state = { brand : { } }, action ) {
+    switch (action.type) {
+        case BRAND_DELETE_REQUEST:
+            return { loading : true }
+        case BRAND_DELETE_SUCCESS:
+            return { loading : false, success : true, brand : action.payload }
+        case BRAND_DELETE_FAILED:
+            return { loading : false , error : action.payload}
+        default:
+            return state
+    }
+}
 
 
 
@@ -65,7 +86,7 @@ function catListReducer(state = {   cats:[] }, action ) {
         case CAT_LIST_REQUEST:
             return { loading : true, cats: [] }
         case CAT_LIST_SUCCESS:
-            return { loading : false, cats: action.payload }
+            return { loading : false, cats: action.payload, success:true }
         case CAT_LIST_FAILED:
             return { loading : false, error: action.payload };
         default:
@@ -75,12 +96,24 @@ function catListReducer(state = {   cats:[] }, action ) {
 function catSaveReducer(state = { cat: {} }, action ) {
     
     switch (action.type) {
-        case  CAT_LIST_REQUEST:
-            return { loading : true, cat:{} }
-        case CAT_LIST_SUCCESS:
-            return { loading : false, cat: action.payload }
-        case CAT_LIST_FAILED:
+        case  CAT_SAVE_REQUEST:
+            return { loading : true, cat:{ } }
+        case CAT_SAVE_SUCCESS :
+            return { loading : false, cat: action.payload, success:true }
+        case CAT_SAVE_FAILED:
             return { loading : false, error: action.payload };
+        default:
+            return state
+    }
+}
+function catDeleteReducer ( state = { cat : { } }, action ) {
+    switch (action.type) {
+        case CAT_DELETE_REQUEST:
+            return { loading : true }
+        case CAT_DELETE_SUCCESS:
+            return { loading : false, success : true, cat : action.payload }
+        case CAT_DELETE_FAILED:
+            return { loading : false , error : action.payload}
         default:
             return state
     }
@@ -89,7 +122,7 @@ function catSaveReducer(state = { cat: {} }, action ) {
 
 export {
     bannerListReducer, 
-    brandListReducer,brandSaveReducer,
-    catListReducer, catSaveReducer
+    brandListReducer,brandSaveReducer, brandDeleteReducer,
+    catListReducer, catSaveReducer, catDeleteReducer
 
 }

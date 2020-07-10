@@ -13,7 +13,7 @@ function cartReducer (state = { cartItems: [], shipping: {}, payment : {} }, act
                     cartItems:
                     state.cartItems.map( x => x.id === product.id ? item : x )
                 }
-            }
+                }
             return { cartItems: [...state.cartItems, item] };
         case CART_REMOVE_ITEM:
             return { cartItems: state.cartItems.filter( x => x.id !== action.payload )}

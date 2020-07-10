@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { listProducts } from '../../actions/productAction';
 import Rating from '../../components/rating'
 import Banner from '../../components/Banner';
-import { set } from 'js-cookie';
+// import { set } from 'js-cookie';
 
 
 
@@ -90,7 +90,7 @@ function ShopScreen (props) {
                         <div >
                             <ul className="products">
                                 {
-                                    products ? products.map( product =>       
+                                    products.length ? products.map( product =>       
                                         <li key={product._id}>
                                             <div className="product"  >
                                                 <Link to = {`/product/${ product._id }`}>
@@ -112,7 +112,7 @@ function ShopScreen (props) {
                                     )
                                         :
                                     <div>
-                                        Error
+                                        Product is Empty
                                     </div> 
                                 }
                             </ul>

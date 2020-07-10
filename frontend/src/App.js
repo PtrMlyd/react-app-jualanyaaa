@@ -36,6 +36,9 @@ function App(props) {
   const brandList = useSelector(state => state.brandList)
   const {loading:loadingBrand, error : errorBrand, brands} = brandList
 
+  const cart = useSelector( state => state.cart)   
+  const { cartItems } = cart;
+
 
   const dispatch = useDispatch();
 
@@ -91,6 +94,7 @@ function App(props) {
                                     <li>
                                         <Link to='/profile/'> Profile </Link>
                                         <Link to="/managebrand">Manage Brand </Link> 
+                                        <Link to="/managecategory">Manage Category </Link> 
                                         <Link to="/manageproduct">Manage Product </Link> 
                                         <Link to="/manageorder" >Manage Order</Link> 
                                         {/* <Link onClick={onLogOut}>Log Out</Link> */}

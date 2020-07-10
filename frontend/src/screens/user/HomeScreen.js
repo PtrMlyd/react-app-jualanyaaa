@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { listProducts } from '../../actions/productAction';
+// import { listProducts } from '../../actions/productAction';
 // import Rating from '../../components/rating'
 import HBanner from '../../components/Banner';
+import { listCat } from '../../actions/catAction';
 
 
 function HomeScreen (props) {
@@ -11,38 +12,38 @@ function HomeScreen (props) {
     const productList = useSelector( state => state.productList );
     const {products, loading, error} = productList
 
-    const category = props.match.params.id ? props.match.params.id:'';
+    const catList = useSelector (state => state.catList)
+    const {loading :loadingCat, cats, error: errorCat} = catList
 
     const dispatch = useDispatch();
 
     // fetchDate from server // sama dengan component did mount
     useEffect( () => {
-        dispatch(listProducts(category))
+        dispatch(listCat())
         return () => {
         }
-    }, [category])
+    }, [])
 
 
     return <div className="content">
      
             <div className="jumbotron1-container">
                 <img src="/images/nature/nature1.jpg" />
-
             </div>
             <div className='jb-cat'>
                 BROWSE YOUR CHOICE
             </div>
             <div className="jumbotron2-container">
             {
-                loading ? <div> Loading . . . </div>
+                loadingCat ? <div> Loading . . . </div>
                 :
-                error ? <div> {error}</div> :
+                errorCat ? <div> {error}</div> :
                     <div className="jumbotron2-center">
                         <div className="jumbotron2-item" >
                             {
-                                products ?  products.map( product =>       
-                                <div className="jumbotron2-content" key={product._id}> 
-                                    <img  src={product.image} alt={product.name}/>
+                                cats ?  cats.map( cat =>       
+                                <div className="jumbotron2-content" key={cat._id}> 
+                                    <img  src={cat.image} alt={cat.name}/>
                                 </div>
                                 ) :
                                 <div>

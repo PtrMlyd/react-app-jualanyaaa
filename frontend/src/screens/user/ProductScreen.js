@@ -49,6 +49,7 @@ function ProductScreen (props) {
 
     const addToCart = () => {
         props.history.push(`/cart/${props.match.params.id}?qty=${qty}` )
+        
     }
 
     return loading ? <div>Loading . . .</div>:
