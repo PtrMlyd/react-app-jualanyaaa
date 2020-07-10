@@ -39,22 +39,21 @@ router.get("/:id", async (req, res) => {
     }
   });
 
-router.post('/',isAuth,isAdmin, async (req, res) => {
-
-    const product = new Product ({
-        name : req.body.name,
-        image : req.body.image,
-        category : req.body.category,
-        price : req.body.price,
-        inStock : req.body.inStock,
-        description : req.body.description,
-    })
-    const newProduct = await product.save()
-
-    if(newProduct){
-        return res.status(201).send( { message : 'New Product Created !', data: newProduct})
+router.post("/", isAuth, isAdmin, async (req, res) => {
+    const product = new Product({
+        name: req.body.name,
+        price: req.body.price,
+        image: req.body.image,
+        category: req.body.category,
+        inStock: req.body.inStock,
+        description: req.body.description,
+    });
+    const newProduct = await product.save();
+    if (newProduct) {
+        return res.status(201).send({ message: 'New Product Created', data: newProduct });
     }
-    return res.status(500).send({ msg : 'Error while Creating New Product.'})
+    console.log(newProduct)
+    return res.status(500).send({ message: ' Error in Creating Product.' });
 })
 
 router.put('/:id',isAuth,isAdmin, async (req, res) => {

@@ -102,7 +102,7 @@ function UserProfile(props) {
             </div>
         </div>
         {/* column2 */}
-        <div classNames="profile-ordersa content-margined">
+        <div className="profile-ordersa content-margined">
             {
                 loadingOrders ? <div>Loading . . . </div>:
                 errorOrders ? <div>{errorOrders}</div>:
