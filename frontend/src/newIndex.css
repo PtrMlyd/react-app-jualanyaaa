@@ -1,0 +1,285 @@
+/* new index.css */
+
+html{
+  font-size: 62.5%;
+  box-sizing: border-box;
+}
+body{
+  font: 1.6rem Helvetica;
+  height: 100vh;
+  margin: 0;
+  background-color: #fdfbfb;
+}
+
+#root{
+  height: 100vh ;
+}
+body, 
+input, 
+select, 
+button,  
+textarea{
+  font-family: Monsterrat, Arial, Helvetica, sans-serif;
+  font-size: 1.6rem;
+}
+
+a{
+  text-decoration: none;
+}
+
+/* START APP.JS */
+
+.grid-container{
+  display: grid;
+  grid-template-areas: 
+  'header'
+  'main'
+  'media-site'
+  'sitemap'
+  'footer';
+  grid-template-columns: 1fr;
+  grid-template-rows:  6rem 1fr 7rem 25rem 5.5rem;
+  height: 100%;
+}
+
+.header{
+  grid-area: header;
+  color: black;
+  display: flex;
+  justify-content: space-between; /*untuk menempelkann item di kanan dan kiri*/
+  align-items: center;
+  border-bottom:.1rem #808080 solid ;
+}
+
+.brand a{
+  font-family: sofia;
+  color: #203040;
+  font-size: 2rem;
+  font-weight: bold;
+  margin-top: 1rem;
+  padding-left: 6rem ;
+}
+.header-link a{
+  color: #203040;
+  font-weight: bold;
+  font-size: 1.5rem;
+  justify-content: space-between;
+  padding: 1rem;
+}
+.header-Links a:hover{
+  color:rgb(102, 101, 101);
+}
+
+.fa, .fas  {
+  font-size: 1.5rem;
+  padding: 1.2rem;
+  color: #808080;
+}
+.fa-user-circle{
+  margin-right: 6rem;
+}
+
+.trol {
+  display: flex;
+  height: fit-content;
+  color: #203040;
+  /* border: #203040 1px solid; */
+}
+.trol a{
+  font-size: 2rem;
+  color: #203040;
+}
+
+.dropdown-content{
+  position: absolute;
+  display: none;
+  list-style-type: none;
+  z-index: 1;
+  background-color: #64686d;
+  padding: 0;
+  right:0;
+  width: 200px;
+}
+.dropdown-content li {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: .4rem;
+  
+}
+
+.dropdown:hover .dropdown-content{
+  display: block;
+  color: #64686d;
+}
+
+.main{
+  grid-area: main;
+}
+
+.brand button:hover{
+  color: rgb(102, 101, 101); ;
+}
+
+.button{
+  padding: 1rem;
+  border: 0.1rem #808080 solid;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  background-color: #f0f0f0;
+}
+.button:hover{
+  border: .1rem rgb(44, 44, 51) solid;
+}
+.button.primary{
+  background-color: #f0c040;
+}
+.button.secondary{
+  background-color: #f0f0f0;
+}
+.full-width{
+  width: 100%;
+}
+.product-brand{
+  padding: 4rem;
+}
+
+/* APP.JS END */
+
+.content{
+  display: flex;
+  flex-wrap: wrap;
+  /* 3 -> height, 60rem -> width */
+}
+.content-product{
+  flex: 3 60rem;
+}
+.content-cart{
+  flex: 1 30rem;
+}
+.products{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content:center ;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
+.products li {
+  flex: 0 1 29rem;
+  height: 47rem;
+  padding: 1rem;
+  margin: 1rem;
+}
+.product{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+.product img{
+  width: 37rem;
+  height: 37rem;
+}
+
+.product-price{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.product-price div, .product-price button{
+  text-align: center;
+  flex: 1;
+}
+.product-price div{
+  font-size: 2rem;
+}
+
+/* FOOTER SCREEN START */
+.media-site{
+  grid-area: media-site;
+  display: flex;
+  justify-content: space-evenly;
+}
+.media-site-center{
+  display:flex;
+  flex-direction: row;
+  align-items: center;
+}
+.media-site-center div{
+  margin-right: 3rem;
+}
+.sitemap {
+  grid-area: sitemap;
+  justify-content: space-evenly;
+  display:flex;
+  border-bottom: #6e6e6e 1px solid;
+  background-color: rgb(37, 37, 39);
+}
+.sitemap-footer{
+  display: flex;
+  width: 90%;
+ 
+  padding-top: 3rem;
+  justify-content: space-evenly;
+
+}
+.sitemap-footer .Link{
+  text-decoration:none;
+  font-size: 14px;
+  color: white;
+  padding: 1rem;
+}
+
+.sitemap-footer .Link:hover{
+  color: #808080;
+}
+
+.sitemap-about-logo{
+  display: flex;
+
+  align-items: center;
+}
+.sitemap-footer label{
+  font-size: 16px;
+  color: white;
+  font-weight: bold;
+  margin-bottom: 2rem;
+}
+.sitemap-about-logo h2{
+
+  font-family: sofia;
+  color: white;
+  font-size: 4rem;
+  font-weight: bold;
+  text-align: center;
+}
+.sitemap-about-web div{
+  display: flex;
+  flex-direction: column;
+}
+.footer{
+  grid-area: footer;
+  background-color: rgb(37, 37, 39);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  font-size: 1.5rem;
+}
+.footer-center{
+  width: 90%;
+  display:flex;
+  justify-content: space-between;
+}
+.footer-media{
+  display:flex;
+  flex-direction: row;
+}
+.footer-media div{
+margin-right: 3rem;
+}
+
+/* FOOTER SCREEN END */
+
+/* for tablet start */
