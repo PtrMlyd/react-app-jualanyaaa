@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react';
 import { Route, Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-// import { logOut } from './actions/userAction';
-// import { listProducts } from './actions/productAction';
+import data from './data.js'
 import { listBrand } from './actions/brandAction';
 
 import Banner from './components/Banner';

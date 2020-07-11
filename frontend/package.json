@@ -13,6 +13,7 @@
     "browser-router": "^0.2.0",
     "js-cookie": "^2.2.1",
     "js-cookie-remove-all": "^1.0.3",
+    "jsonwebtoken": "^8.5.1",
     "material-table": "^1.63.1",
     "react": "^16.13.1",
     "react-bootstrap": "^1.0.1",
