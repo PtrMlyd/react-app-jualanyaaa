@@ -9,7 +9,7 @@ export default class Products extends Component {
         return (
             <div>
                 <ul className='products'>
-                    {/* 4. create render of */}
+                    {/* 5. create render of */}
                     {
                         // property must be same on data.json
                     this.props.products.map( product => (
@@ -25,7 +25,9 @@ export default class Products extends Component {
                                     <div>
                                         { formatCurrency(product.price) }
                                     </div>
-                                    <button className = "button primary">
+                                    {/* 1. cart -  create handle add to cart to make a functon. go to app.js*/}
+                                    {/* 5. cart - karena kita menggunakan add to cart dari props, go to app.js */}
+                                    <button onClick={ () => this.props.addToCart( product ) } className = "button primary">
                                         Add to Cart
                                     </button>
                                 </div>  

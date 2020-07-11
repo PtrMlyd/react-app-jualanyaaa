@@ -207,6 +207,52 @@ a{
   flex: 1;
 }
 
+.cart{
+  padding: 1rem;
+  margin: 1.2rem;
+  display: flex;
+}
+.cart-header{
+  border-bottom: 0.1rem solid #c0c0c0;
+}/* go to the cart.js for create list of cart*/
+/* styling the cart */
+.cart-items{
+  padding:0;
+  width:100%;
+  list-style-type: none;
+}
+.cart-items img {
+  width: 6rem;
+  height: 8rem;
+  border: #203040 1px solid;
+}
+.cart-items li{
+  display: flex;
+}
+.cart-items li div{
+  padding: 0.5rem;
+}
+.cart-items li div:last-child{
+  flex: 1;
+}
+/* move the remove button to right */
+.right{
+  text-align: right;
+}
+/* go to cart.js */
+.total{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;;
+}
+.total > div{
+  font-size: 2rem;
+}
+.total > div,
+.total > button {
+  flex:  1;
+}
 /* FOOTER SCREEN START */
 .media-site{
   grid-area: media-site;
