@@ -14,15 +14,10 @@ const {
 } = require("../constant/detail");
 
 
-const listBrand = () => async (dispatch, getSate) => {
+const listBrand = () => async (dispatch) => {
     try {
         dispatch({ type: BRAND_LIST_REQUEST });
-        const { userSignin : { userInfo } } = getSate()
-        const {data} = await Axios.get('/api/brands', {
-            headers: {
-                Authorization : "Bearer " + userInfo.token
-            }
-        })
+        const {data} = await Axios.get('/api/brands')
         dispatch({ type : BRAND_LIST_SUCCESS, payload: data });
 
     } catch (error) {

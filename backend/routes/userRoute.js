@@ -1,7 +1,9 @@
-
 const User = require('../models/userModel')
 const express = require('express');
 const { getToken, isAuth } = require('../util');
+
+// create  nodemailer
+
 const router = express.Router();
 
 // memuat admin
@@ -54,13 +56,25 @@ router.post('/signin',  async (req, res) => {
 
 router.post('/register',  async (req, res) => {
 
-    const user = new User({
-        username: req.body.username,
-        email: req.body.email,
-        password: req.body.password
-      });
-      const newUser = await user.save();
-
+    const { username, email, password } = req.body;
+    //check if user already exist
+    User.findOne( { email } ).exec( ( err, user ) => {
+        if ( user ){
+            return res.status(400).send( { error : 'User with this email already Exists.' } )
+        }
+    })
+    
+    const newUser = new User({ username, email, password});
+    newUser.save( ( err, success ) => {
+        if( err ) {
+            console.log(' Error while Register: ', err)
+            return res.status(400).send( { error : err})
+        }
+        res.status(201).send({
+            message : 'Register Success!'
+        })
+    })
+ 
     if(newUser){
         res.send({
             _id: newUser.id,
@@ -73,6 +87,7 @@ router.post('/register',  async (req, res) => {
         res.status(401).send({ msg : 'INVALID USER DATA.'})
     }
 })
+
 // user update
 router.put('/:id', isAuth,  async (req, res) => {
     

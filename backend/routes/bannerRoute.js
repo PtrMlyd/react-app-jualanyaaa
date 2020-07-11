@@ -14,7 +14,7 @@ router.get('/',  async (req, res ) => {
     }
 })
 
-router.post('/addBanner',  async (req, res) => {
+router.post('/',  async (req, res) => {
     
     const banner = new bannerModel({
         numb : req.body.numb,

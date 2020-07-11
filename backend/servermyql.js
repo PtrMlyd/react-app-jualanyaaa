@@ -2,10 +2,9 @@ const express = require('express');
 const data = require('./database/data')
 const db = require('./config/mongo')
 const bodyParser = require('body-parser')
-const {PORT} = require('./config/string')
+const {PORT, PAYPAL_CLIENT_ID} = require('./config/string')
 
 const path = require('path')
-
 
 const app = express();
 
@@ -30,8 +29,6 @@ app.use('/api/orders', orderRouter)
 app.use('/api/banners', bannerRouter)
 app.use('/api/brands', brandRouter)
 app.use('/api/categories', catRouter)
-
-const PAYPAL_CLIENT_ID = 'AYvCSNnbVLnuzwopaBrYjtGePl0WDhL_Aeo8nOG8vFEQ6cMtmi1QgefWvgaQsG53U8b2-QzdoTIsv6QI' || 'sb'
 
 // get a api for paypal
 app.get('/api/config/paypal', (req, res ) => {
