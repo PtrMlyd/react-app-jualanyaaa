@@ -1,3 +1,4 @@
+// new App.js
 import React, { useEffect } from 'react';
 import { Route, Link } from 'react-router-dom';
 import data from './newDatabase/data.json'
