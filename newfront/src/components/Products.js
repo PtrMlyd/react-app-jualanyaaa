@@ -131,6 +131,6 @@ class Products extends Component {
 
 // 13. redux - connect ada 2 param, : 1. function yang menerima state yang mereturn object yang kita gunakan (products.items)<- harus sama dengan product reducer, 2.list of action yang kita gunakan, selain connect paramater yang lain itu component itu sendiri ( untuk connectting the action)
 export default connect ( 
-    ( state ) => ( { products : state.products.item }),
+    ( state ) => ( { products : state.products.filteredItem }),
     { fetchProducts }
 ) (Products) //14. redux -  setelah itu kita use fetch roduct di dalam component did mount
