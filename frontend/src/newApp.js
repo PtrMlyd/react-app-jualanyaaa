@@ -4,7 +4,10 @@ import { Route, Link } from 'react-router-dom';
 import data from './newDatabase/data.json'
 import Products from './components/Products';
 import Header from './components/Header'
+
+
 import Filter from './components/Filter';
+
 
 class App extends React.Component {
 
@@ -12,7 +15,10 @@ class App extends React.Component {
     constructor() {
         super ()
         this.state = {
+
+
             // initiate must be same on object of data.json
+
             products : data.products,
             size :'',
             sort:''
@@ -20,6 +26,8 @@ class App extends React.Component {
         }
         
     }
+
+
     // 6. filter - create a function structure for filerProduct and sortProduct
     sortaProduct ( sort ) {
         console.log(sort.target.value) 
@@ -72,6 +80,7 @@ class App extends React.Component {
         }
     }
 
+
     render() {
     return (
         <div className="grid-container">          
@@ -101,6 +110,7 @@ class App extends React.Component {
                 {/* 3. layouting for product list */}
                 <div className='content'>
                     <div className="content-product">
+
                         {/* // 2. filter - call component Filter and define property*/}
                         <Filter 
                             count = { this.state.products.length }
@@ -120,7 +130,21 @@ class App extends React.Component {
                 </div>
                   
             </main>
-             
+              <div className="media-site">
+                  <div className='media-site-center'>
+                      <div><h2>JOIN OUR NEWSLETTER </h2></div>
+                      <div>
+                          <input placeholder='Email Address' />   
+                      </div>
+                      <div> 
+                          <button className="button secondary">
+                              Subscribe
+                          </button>
+                      </div>
+                  </div>
+              </div>
+  
+
               <div className='sitemap'>
                   <div className='sitemap-footer'>
                       <div className='sitemap-about-logo'>
