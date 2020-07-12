@@ -3,6 +3,7 @@
 // 9. cart - create a impleted functionn of the add to cart button to client
 import React, { Component } from 'react'
 import { formatCurrency } from '../support/NewUtil'
+import Fade from 'react-reveal/Fade'
 
 export default class Cart extends Component {
     // 7. checkout
@@ -53,26 +54,28 @@ export default class Cart extends Component {
                 }
                     {/* /* 12. cart - render of the cart item  */ }
                 <div className='cart'>
-                    <ul className='cart-items'>
-                        {
-                            cart.map( item => (
-                                <li key={item._id}>
-                                    <div>
-                                        <img src={ item.image } alt= { item.title } />
-                                    </div>
-                                    <div>
-                                        <div> { item.title } </div>
-                                        <div className='right' > 
-                                            <div> { item.count } x { formatCurrency( item.price ) }</div>
-                                            <button className='button' onClick = { () => this.props.removeFromCart( item ) }> {/* 14. create a remove function, go to app.js */}
-                                                Remove
-                                            </button>
+                    <Fade left cascade>
+                        <ul className='cart-items'>
+                            {
+                                cart.map( item => (
+                                    <li key={item._id}>
+                                        <div>
+                                            <img src={ item.image } alt= { item.title } />
                                         </div>
-                                    </div>
-                                </li>
-                            ))//13. cart -  styling this, go to css
-                        }
-                    </ul>
+                                        <div>
+                                            <div> { item.title } </div>
+                                            <div className='right' > 
+                                                <div> { item.count } x { formatCurrency( item.price ) }</div>
+                                                <button className='button' onClick = { () => this.props.removeFromCart( item ) }> {/* 14. create a remove function, go to app.js */}
+                                                    Remove
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </li>
+                                ))//13. cart -  styling this, go to css
+                            }
+                        </ul>
+                    </Fade>
                 </div> 
                 {/* create Total item price and add condition*/}
                 {
@@ -94,45 +97,47 @@ export default class Cart extends Component {
                             </div>     
                             {
                                 this.state.showCheckOut && (
-                                    <div className = 'cart'>
-                                        <form onSubmit = {this.createOrder}>
-                                            <ul className = 'form-container'>
-                                                <li>
-                                                    <label> Email </label>
-                                                    <input 
-                                                        type = 'email'
-                                                        name = 'email'
-                                                        required
-                                                        onChange = {this.handleInput}
+                                    <Fade right cascade>
+                                        <div className = 'cart'>
+                                            <form onSubmit = {this.createOrder}>
+                                                <ul className = 'form-container'>
+                                                    <li>
+                                                        <label> Email </label>
+                                                        <input 
+                                                            type = 'email'
+                                                            name = 'email'
+                                                            required
+                                                            onChange = {this.handleInput}
+                                                            />
+                                                    </li>
+                                                    <li>
+                                                        <label> Name </label>
+                                                        <input 
+                                                            type = 'text'
+                                                            name = 'name'
+                                                            required
+                                                            onChange = {this.handleInput}
+                                                            />
+                                                    </li>
+                                                    <li>
+                                                        <label> Address </label>
+                                                        <input 
+                                                            type = 'text'
+                                                            name = 'address'
+                                                            required
+                                                            onChange = {this.handleInput}
                                                         />
-                                                </li>
-                                                <li>
-                                                    <label> Name </label>
-                                                    <input 
-                                                        type = 'text'
-                                                        name = 'name'
-                                                        required
-                                                        onChange = {this.handleInput}
-                                                        />
-                                                </li>
-                                                <li>
-                                                    <label> Address </label>
-                                                    <input 
-                                                        type = 'text'
-                                                        name = 'address'
-                                                        required
-                                                        onChange = {this.handleInput}
-                                                    />
-                                                </li>
-                                                <li>
-                                                    <button type = 'submit' className='button primary'>
-                                                        Create Order
-                                                    </button>
-                                                </li>
-                                                {/* 9. checkout - create handle input function & create order*/}
-                                            </ul>
-                                        </form>
-                                    </div> 
+                                                    </li>
+                                                    <li>
+                                                        <button type = 'submit' className='button primary'>
+                                                            Create Order
+                                                        </button>
+                                                    </li>
+                                                    {/* 9. checkout - create handle input function & create order*/}
+                                                </ul>
+                                            </form>
+                                        </div> 
+                                    </Fade>
                                 )
                             }
                        </div>
