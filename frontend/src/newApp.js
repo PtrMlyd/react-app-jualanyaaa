@@ -5,12 +5,20 @@ import data from './newDatabase/data.json'
 import Products from './components/Products';
 import Header from './components/Header'
 
+
+import Filter from './components/Filter';
+
+
 class App extends React.Component {
 
     // 1. initial state for product rendering
     constructor() {
         super ()
         this.state = {
+
+
+            // initiate must be same on object of data.json
+
             products : data.products,
             size :'',
             sort:''
@@ -18,6 +26,60 @@ class App extends React.Component {
         }
         
     }
+
+
+    // 6. filter - create a function structure for filerProduct and sortProduct
+    sortaProduct ( sort ) {
+        console.log(sort.target.value) 
+    }
+    filtearProduct ( size ) {
+        console.log(size.target.value);
+    }
+    // 7. go to the filter componennt.js
+    
+    // 8. filter - change the method to this arraw function fotr access set state method
+    sortProduct =( sorts )=> {
+        console.log(sorts.target.value) 
+        const sort = sorts.target.value
+
+        this.setState( ( state ) => ({
+            sort : sort,
+            products : this.state.products
+            .slice()
+            .sort( ( a, b ) =>
+                sort === 'lowest'
+                    ? a.price > b.price 
+                        ? 1 
+                        : -1 
+                    :
+                sort === 'highest' 
+                    ? a.price < b.price 
+                        ? 1 
+                        : -1
+                    : a._id < b._id
+                    ? 1
+                    : -1
+            )
+        }))
+    }
+    filterProduct =( sizes )=> {
+        console.log(sizes.target.value);
+        const size = sizes.target.value
+
+        // 10 . make a condition if filter not a choosed
+        if( size === '' ){
+            this.setState( { size: size, products : data.products })
+        }else{
+            // 9. filter - set a setstate to make all product filtered by size
+            this.setState({
+                size : size,
+                products : data.products.filter( 
+                    (product) => product.size.indexOf(size) >= 0
+                ),
+            })
+        }
+    }
+
 
     render() {
     return (
@@ -48,6 +110,17 @@ class App extends React.Component {
                 {/* 3. layouting for product list */}
                 <div className='content'>
                     <div className="content-product">
+
+                        {/* // 2. filter - call component Filter and define property*/}
+                        <Filter 
+                            count = { this.state.products.length }
+                            size = { this.state.size }
+                            sort = { this.state.sort }
+                            // 5. filter , 3 property diatas (size, sort) itu di passing atas komponen filtering
+                            // 2 property dibawah untuk membuat fungsi untuk handle perubahan dari size and sort
+                            filterProduct = { this.filterProduct }
+                            sortProduct = { this.sortProduct }
+                        />
                         {/* 5. call product component */}
                         <Products products = { this.state.products }></Products>
                     </div>
@@ -71,6 +144,7 @@ class App extends React.Component {
                   </div>
               </div>
   
+
               <div className='sitemap'>
                   <div className='sitemap-footer'>
                       <div className='sitemap-about-logo'>

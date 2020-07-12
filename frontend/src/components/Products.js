@@ -17,6 +17,7 @@ export default class Products extends Component {
                             <div className = 'product'>
                                 <a href={ `#${ product._id }` }>
                                     <img src = { product.image } alt= { product.title }  />
+
                                     <p>
                                         { product.title }
                                     </p>
@@ -29,6 +30,20 @@ export default class Products extends Component {
                                         </button>
                                     </div>  
                                 </a>
+
+                                </a>
+                                <p>
+                                    { product.title }
+                                </p>
+                                <div className = 'product-price'>
+                                    <div>
+                                        { formatCurrency(product.price) }
+                                    </div>
+                                    <button className = "button primary">
+                                        Add to Cart
+                                    </button>
+                                </div>  
+
                             </div>
                         </li>
                     ))}
