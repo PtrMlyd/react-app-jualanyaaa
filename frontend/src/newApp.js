@@ -15,8 +15,14 @@ class App extends React.Component {
         this.state = {
             // 2. product - initiate must be same on object of data.json
             products : data.products,
+
             // 2. cart - set state of cart to empty array (which mean default cart is null)
-            cart : [],
+            // cart : [],
+
+            // 4. checkout - change the array to json.parse for get cart from local storage
+            cart : localStorage.getItem('cartItems') 
+                    ? JSON.parse(localStorage.getItem('cartItems')) 
+                    : [],
             size :'',
             sort:''
             // 3. product - create database depend this state ( data.json )
@@ -60,7 +66,7 @@ class App extends React.Component {
     filterProduct =( sizes )=> {
         console.log(sizes.target.value);
         const size = sizes.target.value
-
+        
         // 11. filter -  . make a condition if filter not a choosed
         if( size === '' ){
             this.setState( { size: size, products : data.products })
@@ -91,15 +97,26 @@ class App extends React.Component {
         }
         // 8 cart - after adding a new stuff (newcart), update the state, go to implement for the clientview,  goto cart.js
         this.setState( { cart })
+        // 2. checkout - add localstorage
+        localStorage.setItem('cartItems', JSON.stringify(cart))
     }
     // 13. cart - define a remove button functionn, set a property to the cart
     removeFromCart = (product) => {
         const cart = this.state.cart.slice()
         this.setState({
-            cart:cart.filter( x => x._id !== product._id ),
+            cart: cart.filter( x => x._id !== product._id ),
         })
+        // 3. checkout - copas to the remove function
+        // localStorage.setItem('cartItems', JSON.stringify(cart))
+        // 5. checkout - change cart to this.state.cart - cause cart is inside the state. go to cart.js to make handle the proceed button
+        localStorage.setItem('cartItems', JSON.stringify(cart.filter( x => x._id !== product._id )))
     }
-     
+
+    // 16.checkout - create order function
+    createOrder = (order) => {
+        alert( `Need to save order for ${order.name}` ) //and pass as a property inside a cart comoponent
+    }
+    
     render() {
     return (
         <div className="grid-container">          
@@ -152,6 +169,8 @@ class App extends React.Component {
                             cart = { this.state.cart}
                             // 15. cart - using a handle property of cart. add total and proceed, go to cart.js
                             removeFromCart = { this.removeFromCart}
+                            // 17. checkout - add a create order function
+                            createOrder = { this.createOrder } // go to css for styling
                         />
                     </div>
                 </div>
