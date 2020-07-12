@@ -6,11 +6,11 @@ const {
     BANNER_LIST_FAILED 
 } = require("../constant/detail");
 
-const listBanner = ( banner) => async (dispatch) => {
+const listBanner = () => async (dispatch) => {
     try {
         dispatch({ type: BANNER_LIST_REQUEST });
 
-        const {data} = await Axios.get('/api/banners', banner)
+        const {data} = await Axios.get('/api/banners')
         dispatch({ type : BANNER_LIST_SUCCESS, payload: data });
 
     } catch (error) {

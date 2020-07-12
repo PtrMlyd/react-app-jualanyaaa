@@ -18,6 +18,7 @@ import {
     ORDER_DELETE_SUCCESS, 
     ORDER_DELETE_FAILED 
 } from "../constant/order"
+const Cookie = require ('js-cookie')
 
 const { default: Axios } = require("axios")
 
@@ -71,6 +72,7 @@ const payOrder = (order, paymentResult) => async (dispatch, getState) => {
         })
 
         dispatch({ type : ORDER_PAY_SUCCESS , payload : data })
+        Cookie.remove('cartItems')
     } catch (error) {
         console.log(error)
         dispatch( { type : ORDER_PAY_FAILED, payload : error.message } );
