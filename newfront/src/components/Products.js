@@ -7,16 +7,25 @@ import formatCurrency from '../util'
 import Fade from 'react-reveal/Fade'
 import Modal from 'react-modal'
 import Zoom from 'react-reveal/Zoom'
+import { connect } from 'react-redux'
+import { fetchProducts } from '../redux/actions/productAction'
 
-export default class Products extends Component {
+// 12. redux - remove export default, and add connect in the end
+class Products extends Component {
     // 1. react-modal - create constructor
     constructor (props) {
         super (props) ;
         this.state = {
-            product : null, //product detail by image of product. if product exist, product is show. go to image of product
+            product : null, //2. react-modal - product detail by image of product. if product exist, product is show. go to image of product
         }
-        
     }
+
+    //15. redux - use componentdidmount() to fetching product
+    componentDidMount() {
+        this.props.fetchProducts() // 16. redux - go to package.json, set proxy - computer adress, after that, run both a side (client and backend), if error (map of undefined) , use conditional rendering (if object is false show loading, if not showing them)
+    }
+
+
     // 3. react-modal - create open modal function and close modal function
     openModal =  (product ) => {
         this.setState( { product } )
@@ -34,34 +43,41 @@ export default class Products extends Component {
             <div>
                 {/* create fade section */}
                 <Fade bottom cascade>
-                    <ul className='products'>
-                        {/* 5. create render of */}
-                        {
-                            // property must be same on data.json
-                        this.props.products.map( product => (
-                            <li key = { product._id } >
-                                <div className = 'product'>
-                                    {/* 2. react-modal - add handle for open this modal by onclick */}
-                                    <a href={ `#${ product._id }` } onClick = { () => this.openModal(product)} >
-                                        <img src = { product.image } alt= { product.title }  />
-                                    </a>
-                                    <p>
-                                        { product.title }
-                                    </p>
-                                    <div className = 'product-price'>
-                                        <div>
-                                            { formatCurrency(product.price) }
-                                        </div>
-                                        {/* 1. cart -  create handle add to cart to make a functon. go to app.js*/}
-                                        {/* 5. cart - karena kita menggunakan add to cart dari props, go to app.js */}
-                                        <button onClick={ () => this.props.addToCart( product ) } className = "button primary">
-                                            Add to Cart
-                                        </button>
-                                    </div>  
-                                </div>
-                            </li>
-                        ))}
-                    </ul>
+                    {/*17.redux. use in here */}
+                    {
+                        !this.props.products ? (
+                        <div> Loading ...</div>
+                        ) : (
+                        <ul className='products'>
+                            {/* 5. create render of */}
+                            {
+                                // property must be same on data.json
+                            this.props.products.map( product => (
+                                <li key = { product._id } >
+                                    <div className = 'product'>
+                                        {/* 2. react-modal - add handle for open this modal by onclick */}
+                                        <a href={ `#${ product._id }` } onClick = { () => this.openModal(product)} >
+                                            <img src = { product.image } alt= { product.title }  />
+                                        </a>
+                                        <p>
+                                            { product.title }
+                                        </p>
+                                        <div className = 'product-price'>
+                                            <div>
+                                                { formatCurrency(product.price) }
+                                            </div>
+                                            {/* 1. cart -  create handle add to cart to make a functon. go to app.js*/}
+                                            {/* 5. cart - karena kita menggunakan add to cart dari props, go to app.js */}
+                                            <button onClick={ () => this.props.addToCart( product ) } className = "button primary">
+                                                Add to Cart
+                                            </button>
+                                        </div>  
+                                    </div>
+                                </li>
+                            ))}
+                        </ul>
+                        ) //18. redux - update the data in the product action
+                    }
                 </Fade>
                 {/* 5. react-modal - create conditional , if product exists, sow the modal. define a modal */}
                 {
@@ -112,3 +128,9 @@ export default class Products extends Component {
         )
     }
 }
+
+// 13. redux - connect ada 2 param, : 1. function yang menerima state yang mereturn object yang kita gunakan (products.items)<- harus sama dengan product reducer, 2.list of action yang kita gunakan, selain connect paramater yang lain itu component itu sendiri ( untuk connectting the action)
+export default connect ( 
+    ( state ) => ( { products : state.products.item }),
+    { fetchProducts }
+) (Products) //14. redux -  setelah itu kita use fetch roduct di dalam component did mount

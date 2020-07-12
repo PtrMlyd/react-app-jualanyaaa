@@ -6,7 +6,9 @@ import Products from './components/Products';
 import Header from './components/Header'
 import Filter from './components/Filter';
 import Cart from './components/Cart';
-
+//9. redux - add a store, and then whap all inside a Provider < import this Provider
+import store from './redux/store'
+import { Provider } from 'react-redux'
 
 class App extends React.Component {
 
@@ -120,6 +122,8 @@ class App extends React.Component {
     
     render() {
     return (
+    // 10. redux - add store as a poperty of provider and define as a store
+    <Provider store = { store }> {/* 11. redux - connect the product , go to product.js*/}
         <div className="grid-container">          
             <header className="headers">
                  <Header />
@@ -174,74 +178,73 @@ class App extends React.Component {
                             createOrder = { this.createOrder } // go to css for styling
                         />
                     </div>
-                </div>
-                  
+                </div> 
             </main>
-             
-              <div className='sitemap'>
-                  <div className='sitemap-footer'>
-                      <div className='sitemap-about-logo'>
-                          <h2>Jualan Yaaa</h2>
-                      </div>
-                      <div className='sitemap-about-web'>
-                          <label> 
-                              Help Center
-                          </label>
-                          <div>
-                              <Link className='Link' to='/profile'>Account</Link>
-                              <Link className='Link' to='/about-shipping'>Shipping</Link>
-                              <Link className='Link' to='/about-faq'>Frequently Asked Question</Link>
-                              <Link className='Link' to='/about-terms'>Terms of Condition</Link>
-                          </div>
-                      </div>
-                      <div className='sitemap-about-web'>
-                          <label> 
-                              About Us
-                          </label>
-                          <div>
-                              <Link className='Link' to='/company-profile'>Profile</Link>
-                              <Link className='Link' to='/about-us'>About Us</Link>
-                              <Link className='Link' to='/contact-us'>Contact Us</Link>
-                              <Link className='Link' to='/join-us'>Join Us</Link>
-                          </div>
-                      </div>
-  
-                      
-                      <div className='sitemap-about-web'>
-                          <label>
-                              Our Website
-                          </label>
-                          <div>
-                              <Link className='Link' to='/'>Home</Link>
-                              <Link className='Link' to='/shop'>Shop</Link>
-                              <Link className='Link' to='/categories'>Categories</Link>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-              <footer className="footer">
-                  <div className="footer-center">
-                      <div className="footer-copyright">
-                          All Rights Reserved
-                      </div>
-                      <div className="footer-media">
-                          <div>
-                              Follow Us
-                          </div>
-                          <div>
-                              <i className='fab fa-instagram' />
-                          </div>
-                          <div>
-                              <i className='fab fa-facebook' />
-                          </div>
-                          <div>
-                              <i className='fab fa-twitter' />
-                          </div>
-                      </div>    
-                  </div>               
-              </footer>
-           </div>
-      );
+                <div className='sitemap'>
+                    <div className='sitemap-footer'>
+                        <div className='sitemap-about-logo'>
+                            <h2>Jualan Yaaa</h2>
+                        </div>
+                        <div className='sitemap-about-web'>
+                            <label> 
+                                Help Center
+                            </label>
+                            <div>
+                                <Link className='Link' to='/profile'>Account</Link>
+                                <Link className='Link' to='/about-shipping'>Shipping</Link>
+                                <Link className='Link' to='/about-faq'>Frequently Asked Question</Link>
+                                <Link className='Link' to='/about-terms'>Terms of Condition</Link>
+                            </div>
+                        </div>
+                        <div className='sitemap-about-web'>
+                            <label> 
+                                About Us
+                            </label>
+                            <div>
+                                <Link className='Link' to='/company-profile'>Profile</Link>
+                                <Link className='Link' to='/about-us'>About Us</Link>
+                                <Link className='Link' to='/contact-us'>Contact Us</Link>
+                                <Link className='Link' to='/join-us'>Join Us</Link>
+                            </div>
+                        </div>
+    
+                        
+                        <div className='sitemap-about-web'>
+                            <label>
+                                Our Website
+                            </label>
+                            <div>
+                                <Link className='Link' to='/'>Home</Link>
+                                <Link className='Link' to='/shop'>Shop</Link>
+                                <Link className='Link' to='/categories'>Categories</Link>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <footer className="footer">
+                    <div className="footer-center">
+                        <div className="footer-copyright">
+                            All Rights Reserved
+                        </div>
+                        <div className="footer-media">
+                            <div>
+                                Follow Us
+                            </div>
+                            <div>
+                                <i className='fab fa-instagram' />
+                            </div>
+                            <div>
+                                <i className='fab fa-facebook' />
+                            </div>
+                            <div>
+                                <i className='fab fa-twitter' />
+                            </div>
+                        </div>    
+                    </div>               
+                </footer>
+            </div>
+        </Provider>
+    );
   }
 }
 
