@@ -6,23 +6,14 @@ import Products from './components/Products';
 import Header from './components/Header'
 import Filter from './components/Filter';
 import Cart from './components/Cart';
-//9. redux - add a store, and then whap all inside a Provider < import this Provider
 import store from './redux/store'
 import { Provider } from 'react-redux'
 
 class App extends React.Component {
-
-    // 1. product - initial state for product rendering
     constructor() {
         super ()
         this.state = {
-            // 2. product - initiate must be same on object of data.json
             products : data.products,
-
-            // 2. cart - set state of cart to empty array (which mean default cart is null)
-            // cart : [],
-
-            // 4. checkout - change the array to json.parse for get cart from local storage
             cart : localStorage.getItem('cartItems') 
                     ? JSON.parse(localStorage.getItem('cartItems')) 
                     : [],
