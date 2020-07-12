@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 // import { listProducts } from '../../actions/productAction';
 // import Rating from '../../components/rating'
-import HBanner from '../../components/Banner';
+// import HBanner from '../../components/Banner';
 import { listCat } from '../../actions/catAction';
 
 
@@ -62,7 +62,7 @@ function HomeScreen (props) {
             </div>
             
             <div className="jumbotron3">
-                    <HBanner/>
+                    {/* <HBanner/> */}
             </div>
     </div>
 }

@@ -65,9 +65,7 @@ const update = ( {userId, username, email, password}) => async (dispatch, getSta
 const logOut = () => (dispatch) => {
     // remove cookie
     Cookie.removeAll({});
-    dispatch({ type: USER_LOGOUT })
-    window.location.reload()
-   
+    dispatch({ type: USER_LOGOUT })   
 }
 
 export{
