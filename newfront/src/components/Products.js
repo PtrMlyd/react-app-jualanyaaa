@@ -3,7 +3,7 @@
 // making product detail to adding by modal from react0modal
 
 import React, { Component } from 'react'
-import { formatCurrency } from '../support/NewUtil'
+import formatCurrency from '../util'
 import Fade from 'react-reveal/Fade'
 import Modal from 'react-modal'
 import Zoom from 'react-reveal/Zoom'
@@ -69,7 +69,7 @@ export default class Products extends Component {
                         <Modal isOpen = { true } onRequestClose = { this.closeModal }>
                             {/* 7. react-modal - lets's implemented a client view */}
                             <Zoom> 
-                                <button onClick = { this. closeModal }>
+                                <button onClick = { this.closeModal }>
                                     x
                                 </button>
                                 <div className = 'product-details'>
