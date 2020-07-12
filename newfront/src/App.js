@@ -1,11 +1,11 @@
 // new App.js
 import React, { useEffect } from 'react';
 import { Route, Link } from 'react-router-dom';
-import data from './newDatabase/data.json'
+import data from './frontend/src/newDatabase/data.json'
 import Products from './components/Products';
-import Header from './components/Header'
+import Header from './frontend/src/components/Header'
 import Filter from './components/Filter';
-import Cart from './components/Cart';
+import Cart from './newfront/src/components/Cart';
 
 class App extends React.Component {
 

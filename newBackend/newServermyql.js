@@ -1,0 +1,100 @@
+// 1. backend - import to use them
+const express = require('express');
+const bodyParser = require('body-parser')
+const mongoose = require('mongoose')
+const shortid = require('shortid')
+
+// 2. backend - call express as ap
+const app = express();
+
+// 3. backend - call body-parser
+app.use( express.urlencoded({ extended : true } ) )
+app.use( bodyParser.json() )
+
+// 4. backend - initialize the database connection
+const MONGODB_URL = 'mongodb://localhost/new_shop'
+
+mongoose.connect(MONGODB_URL, {
+    useNewUrlParser : true,
+    useUnifiedTopology : true, 
+    useCreateIndex : true
+}).catch( error => console.log( error.reason ) )
+
+app.get('/', ( req, res) => {
+    res.send('RESPON SUCCESS')
+})
+
+// 6. backend - create a product model
+const Product = mongoose.model(
+    'newProducts', 
+    new mongoose.Schema({
+        // _id : { type : shortid.generate }, // change to the
+        _id : { type : String, default : shortid.generate }, // let's run the postman for the test
+        title : String,
+        description : String, 
+        image : String,
+        price : Number,
+        size : [String], 
+    })
+    )
+    
+// 5. backend - create a product endpoint
+app.get('/api/products', async ( req, res ) => {
+    /*7. backend - get a product from api/products,
+    first, call the product and use .<table>.find({})*/
+    const products = await Product.find({}) //<- find is promise, jadi perlu async await syntaks
+    res.send(products) //8. backend -  pass the product to the client, and which mean product must be exists, jadi kita buat end point untuk tambah product
+})
+
+//9. backend - create end point to post the product
+app.post('/api/products', async ( req, res ) => {
+    const newProduct = new Product(req.body) 
+    const saveProduct = await newProduct.save()
+    res.send( 'New Product Created : ' + saveProduct)
+})
+
+//11. backend - delete product
+app.delete('/api/products/:id', async (req, res) => {
+    // 12. define deleted product
+    const deletedProduct = await Product.findByIdAndDelete( req.params.id)
+    res.send('Deleted Product : ' + deletedProduct) // now run nodemon, and if error of invalid schema, go to schema
+})
+
+//10. backend - lunch the server and create a default PORT using .env file
+const PORT = process.env.PORT || 5003
+
+app.listen(PORT, () => {
+    console.log(`Server is Running on http://localhost:${PORT}`)
+} )
+
+// const data = require('../backend/database/data')
+// const db = require('../backend/config/mongo')
+// const {PORT, PAYPAL_CLIENT_ID} = require('../backend/config/string')
+
+// const userRouter = require('../backend/routes/userRoute')
+// const productRouter = require('../backend/routes/productRoute')
+// const orderRouter = require('../backend/routes/orderRoute')
+// const bannerRouter = require('../backend/routes/bannerRoute')
+// const brandRouter = require('../backend/routes/brandRoute')
+// const catRouter = require('../backend/routes/catRoute')
+// const path = require('path')
+// app.use('/api/users', userRouter)
+// app.use('/api/products', productRouter)
+// app.use('/api/orders', orderRouter)
+// app.use('/api/banners', bannerRouter)
+// app.use('/api/brands', brandRouter)
+// app.use('/api/categories', catRouter)
+
+// // get a api for paypal
+// app.get('/api/config/paypal', (req, res ) => {
+//     res.send(PAYPAL_CLIENT_ID)
+// })
+
+// // 6. uploadImg - use the upload route
+// const uploadRouter = require('../backend/routes/uploadRout')
+
+// app.use('/api/uploads', uploadRouter)
+// // 7. uploadImg - go to manage order screen
+
+// // 14. uploadImg - make file go public / bulid environment 
+// app.use('/products', express.static(path.join(__dirname, 'products' )))

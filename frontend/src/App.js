@@ -1,9 +1,7 @@
 import React, { useEffect } from 'react';
 import { Route, Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import data from './data.js'
 import { listBrand } from './actions/brandAction';
-
 import Banner from './components/Banner';
 import header from './components/carousel';
 
@@ -23,9 +21,6 @@ import ManageBrand from './screens/admin/ManageBrand'
 import ManageCategory from './screens/admin/ManageCategory'
 import ManageProductScreen from './screens/admin/ManageProduct';
 import ManageOrderScreen from './screens/admin/ManageOrder';
-
-
-
 
 function App(props) {
 

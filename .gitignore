@@ -34,3 +34,8 @@ package-lock.json
 yarn-lock.json
 frontend/package-lock.json
 frontend/yarn-lock.json
+newBackend/package.json
+newfront/package.json
+frontend/package.json
+frontend/package.json
+backend/package.json

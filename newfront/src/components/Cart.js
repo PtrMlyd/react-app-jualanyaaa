@@ -2,7 +2,7 @@
 
 // 9. cart - create a impleted functionn of the add to cart button to client
 import React, { Component } from 'react'
-import { formatCurrency } from '../support/NewUtil'
+import { formatCurrency } from '../../../frontend/src/support/NewUtil'
 import Fade from 'react-reveal/Fade'
 
 export default class Cart extends Component {
