@@ -3,20 +3,20 @@
 
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { filterProducts, sortProduct } from '../redux/actions/productAction'
+import { filterProducts, sortProducts } from '../redux/actions/productAction'
 
 class Filter extends Component {
     render() {
         return ( 
 
                 //8.filter-redux - create conditional rendering to check the filter product
-                !this.props.filteredProduct ? (
+                !this.props.filteredProducts ? (
                     <div> Loading ...</div>
                 ) : ( //9.filter-redux - update the count to the filtered product
                     <div className="filter"> 
                      {/* 3. filter - it sould be 3 component : result, sort, and price. */}
                         <div className='filter-result'>
-                            { this.props.filteredProduct.length } Products {/*10. filter-redux - go to  the app,js to delete filter function and sort, and then go to produc reducer */}
+                            { this.props.filteredProducts.length } Products {/*10. filter-redux - go to  the app,js to delete filter function and sort, and then go to produc reducer */}
                         </div>
                         <div className="filter-sort">
                             {/* // 8.  filter - add a property of select: valu and onchange */}
@@ -24,7 +24,10 @@ class Filter extends Component {
                             <select 
                                 value = { this.props.sort } 
                                 onChange = { ( e ) => 
-                                    this.props.sortProduct( this.props.filteredProduct, e.target.value )
+                                    this.props.sortProducts( 
+                                        this.props.filteredProducts,
+                                        e.target.value 
+                                    )
                                 } 
                             > {/* 13. filter redux - fit the current product,and the same patter and filter product */}
                                 <option value=""> Latest </option>
@@ -37,7 +40,7 @@ class Filter extends Component {
                             <select 
                                 value = { this.props.size } 
                                 onChange = { ( e ) => 
-                                    this.props.filterProduct( this.props.products, e.target.value )
+                                    this.props.filterProducts( this.props.products, e.target.value )
                                 } 
                             > {/* back to the app.js to check the value */}
                                 <option value=''> All </option>
@@ -59,11 +62,11 @@ class Filter extends Component {
 
 // 7. filter-redux - use connect which use 2 param: 1. convert state to props, 2. action dari productAction
 export default connect ( ( state ) => ( {
-    size : state.products.sizes,
+    size : state.products.size,
     sort : state.products.sort,
     products : state.products.item,
-    filteredProduct : state.products.filteredItem
+    filteredProducts : state.products.filteredItem
 }),{
     filterProducts,
-    sortProduct
+    sortProducts
 }) (Filter) // show loading if no filtered product

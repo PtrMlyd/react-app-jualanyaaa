@@ -52,11 +52,14 @@ class Products extends Component {
                             {/* 5. create render of */}
                             {
                                 // property must be same on data.json
-                            this.props.products.map( product => (
+                            this.props.products.map(( product )=> (
                                 <li key = { product._id } >
                                     <div className = 'product'>
                                         {/* 2. react-modal - add handle for open this modal by onclick */}
-                                        <a href={ `#${ product._id }` } onClick = { () => this.openModal(product)} >
+                                        <a 
+                                            href={ `#${ product._id }` } 
+                                            onClick = { () => this.openModal(product)} 
+                                        >
                                             <img src = { product.image } alt= { product.title }  />
                                         </a>
                                         <p>

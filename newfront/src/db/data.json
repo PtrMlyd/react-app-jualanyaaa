@@ -6,7 +6,7 @@
             "image" : "/images/products/nik1.jpg",
             "categories" : "Shirt",
             "brand" : "H&M",
-            "size" :[
+            "sizes" :[
                 "S","M","L","XL","XXL"
             ],
             "price" : 190000,
@@ -19,7 +19,7 @@
             "image" : "/images/products/nike2.jpg",
             "categories" : "Shirt",
             "brand" : "Crocodile",
-            "size" :[
+            "sizes" :[
                 "S","M","L","XXL"
             ],
             "price" : 140000,
@@ -32,7 +32,7 @@
             "image" : "/images/products/nike3.jpg",
             "categories" : "Shirt",
             "brand" : "Kamikaze",
-            "size" :[
+            "sizes" :[
                 "S","L","XL","XXL"
             ],
             "price" : 210000,
@@ -45,7 +45,7 @@
             "image" : "/images/products/koko1.jpg",
             "categories" : "Koko",
             "brand" : "Kamikaze",
-            "size" :[
+            "sizes" :[
                 "L","XL","XXL"
             ],
             "price" : 250000,
@@ -58,7 +58,7 @@
             "image" : "/images/products/koko2.jpg",
             "categories" : "Koko",
             "brand" : "KurtaSyam",
-            "size" :[
+            "sizes" :[
                 "S","XL","XXL"
             ],
             "price" : 110000,
@@ -71,7 +71,7 @@
             "image" : "/images/products/koko3.jpg",
             "categories" : "Koko",
             "brand" : "Syamsuri Fashion",
-            "size" :[
+            "sizes" :[
                 "S","M"
             ],
             "price" : 350000,

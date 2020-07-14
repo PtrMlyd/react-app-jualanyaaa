@@ -34,7 +34,7 @@ const Product = mongoose.model(
         description : String, 
         image : String,
         price : Number,
-        size : [String], 
+        sizes : [String], 
     })
     )
     
