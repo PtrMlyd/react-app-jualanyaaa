@@ -102,7 +102,7 @@ class Products extends Component {
                                         </p>
                                         <p>
                                             Available Sizes: {" "}
-                                            { product.size.map( size => (
+                                            { product.sizes.map( size => (
                                                 <span>
                                                     {" "}
                                                     <button className='button' > { size } </button>
