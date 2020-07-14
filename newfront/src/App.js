@@ -1,7 +1,7 @@
+// import data from './db/data.json'
 // new App.js
 import React from 'react';
 import {Link}  from 'react-router-dom';
-import data from './db/data.json'
 import Products from './components/Products';
 import Header from './components/Header'
 import Filter from './components/Filter';
@@ -9,46 +9,7 @@ import Cart from './components/Cart';
 import store from './redux/store'
 import { Provider } from 'react-redux'
 
-class App extends React.Component {
-    constructor() {
-        super ()
-        this.state = {
-            cart : localStorage.getItem('cartItems') 
-                    ? JSON.parse(localStorage.getItem('cartItems')) 
-                    : [],
-        }        
-    }
-
-    addToCart = ( product ) => {
-        const cart = this.state.cart.slice() //<- this clone copy cart item of state
-        let alreadyInCart = false;  // define a default value of cart is false
-
-        cart.forEach( item => {
-            if( item._id === product._id ) {  // if item yang di klik sama maka
-                item.count++;  //item is increament
-                alreadyInCart = true 
-            }
-        })
-        if(!alreadyInCart) {
-            cart.push( { ...product, count: 1 } ) 
-        }
-        this.setState( { cart })
-        localStorage.setItem('cartItems', JSON.stringify(cart))
-    }
-    removeFromCart = (product) => {
-        const cart = this.state.cart.slice()
-        this.setState({
-            cart: cart.filter(( x ) => x._id !== product._id ),
-        })
-        localStorage.setItem(
-            'cartItems',
-            JSON.stringify(cart.filter(( x )=> x._id !== product._id )))
-    }
-
-    createOrder = (order) => {
-        alert( `Need to save order for ${order.name}` )
-    }
-    
+class App extends React.Component {   
     render() {
     return (
 
@@ -80,14 +41,10 @@ class App extends React.Component {
                 <div className='content'>
                     <div className="content-product">
                         <Filter />
-                        <Products addToCart = { this.addToCart } />
+                        <Products />
                     </div>
                     <div className='content-cart'>
-                        <Cart 
-                            cart = { this.state.cart}
-                            removeFromCart = { this.removeFromCart}
-                            createOrder = { this.createOrder }
-                        />
+                        <Cart />
                     </div>
                 </div> 
             </main>
