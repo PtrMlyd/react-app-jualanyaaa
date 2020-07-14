@@ -67,34 +67,3 @@ app.listen(PORT, () => {
     console.log(`Server is Running on http://localhost:${PORT}`)
 } )
 
-// const data = require('../backend/database/data')
-// const db = require('../backend/config/mongo')
-// const {PORT, PAYPAL_CLIENT_ID} = require('../backend/config/string')
-
-// const userRouter = require('../backend/routes/userRoute')
-// const productRouter = require('../backend/routes/productRoute')
-// const orderRouter = require('../backend/routes/orderRoute')
-// const bannerRouter = require('../backend/routes/bannerRoute')
-// const brandRouter = require('../backend/routes/brandRoute')
-// const catRouter = require('../backend/routes/catRoute')
-// const path = require('path')
-// app.use('/api/users', userRouter)
-// app.use('/api/products', productRouter)
-// app.use('/api/orders', orderRouter)
-// app.use('/api/banners', bannerRouter)
-// app.use('/api/brands', brandRouter)
-// app.use('/api/categories', catRouter)
-
-// // get a api for paypal
-// app.get('/api/config/paypal', (req, res ) => {
-//     res.send(PAYPAL_CLIENT_ID)
-// })
-
-// // 6. uploadImg - use the upload route
-// const uploadRouter = require('../backend/routes/uploadRout')
-
-// app.use('/api/uploads', uploadRouter)
-// // 7. uploadImg - go to manage order screen
-
-// // 14. uploadImg - make file go public / bulid environment 
-// app.use('/products', express.static(path.join(__dirname, 'products' )))
