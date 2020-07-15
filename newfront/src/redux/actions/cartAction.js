@@ -6,7 +6,6 @@ export const addToCart = ( product ) => ( dispatch, getSate ) => { // 2i. cart-r
     // const cartItems = items.slice()
     const cartItems = getSate().cart.cartItems.slice(); // using  this
     let alreadyExists = false;
-    console.log(cartItems);
 
     //2b. cart-redux - kita buat foreach untuk cek apakah cart item yang kita masukkan sesuai dengan product yang kita inginkan
     cartItems.forEach( ( x ) => {

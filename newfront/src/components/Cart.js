@@ -202,10 +202,15 @@ class Cart extends Component {
                                                             Checkout
                                                         </button>
                                                     </li>
+                                                    <li>
+                                                        <button onClick = { () => this.setState({ showCheckOut : false })} className='button primary'>
+                                                            Cancel
+                                                        </button>
+                                                    </li>
                                                     {/* 9. checkout - create handle input function & create order*/}
                                                 </ul>
                                             </form>
-                                        </div> 
+                                        </div>  
                                     </Fade>
                                 )
                             }
