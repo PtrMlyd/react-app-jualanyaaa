@@ -3,9 +3,12 @@
 // 9. cart - create a impleted functionn of the add to cart button to client
 import React, { Component } from 'react'
 import formatCurrency from '../util'
+import Modal from 'react-modal'
 import Fade from 'react-reveal/Fade'
+import Zoom from 'react-reveal/Zoom'
 import { removeFromCart } from '../redux/actions/cartAction';
 import { connect } from 'react-redux';
+import { createOrder, clearOrder } from '../redux/actions/orderAction'
 
 class Cart extends Component {
     // 7. checkout
@@ -35,18 +38,25 @@ class Cart extends Component {
             name : this.state.name,
             email : this.state.email,
             address : this.state.address,
-            cartItems : this.state.cartItems
+            cartItems : this.props.cartItems,
+            total : this.props.cartItems.reduce(
+                ( a, c ) => a + c.price * c.count, 0
+            ),
         }   
         // 14. checkout - and then pass to create order function for app.js
         this.props.createOrder(order) // 15. checkout - go to app.js
-    }
+    };
 
+    closeModal = () => {
+        this.props.createOrder ()
+    };
     render() {
-        const { cartItems } = this.props
+        const { cartItems, order } = this.props
+        console.log(cartItems)
         return (
             <div>
                 { 
-                    cartItems.length === 0 
+                    cartItems.length === 0
                     ? <div className = 'cart cart-header'> Cart is Empty. </div> 
                     : (
                         <div className = 'cart cart-header'>
@@ -54,12 +64,64 @@ class Cart extends Component {
                         </div>    
                     )/* 10. cart -  styling this, go to css */ 
                 }
-                    {/* /* 12. cart - render of the cart item  */ }
+                {
+                    order && (
+                        <Modal isOpen = { true } onRequestClose = {this.closeModal}
+                        >
+                            <Zoom>
+                                <button className = 'close-modal' onClick = {this.closeModal}>
+                                    x
+                                </button>
+                                <div className = 'order-details'>
+                                    <h3 className = 'success-message'>
+                                        Your Order has been Placed
+                                    </h3> 
+                                    <h2> Order : {order._id}</h2>
+                                    <ul>
+                                        <li>
+                                            <div> Name : </div>
+                                            <div> {order.name} </div>
+                                        </li>
+                                        <li>
+                                            <div> Email : </div>
+                                            <div> {order.email} </div>
+                                        </li>
+                                        <li>
+                                            <div> Address : </div>
+                                            <div> {order.address} </div>
+                                        </li>
+                                        <li>
+                                            <div> Date : </div>
+                                            <div> {order.createdAt} </div>
+                                        </li>
+                                        <li>
+                                            <div> Total : </div>
+                                            <div> {formatCurrency(order.total) } </div>
+                                        </li>
+                                        <li>
+                                            <div> Cart Items: </div>
+                                            <div> 
+                                                {
+                                                    order.cartItems.map( (x) => (
+                                                        <div>
+                                                            { x.count } {" x "} { x.title } 
+                                                        </div>
+                                                    ))
+                                                } 
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </Zoom>
+                        </Modal>
+                    )
+                }
+                {/* /* 12. cart - render of the cart item  */ }
                 <div className='cart'>
                     <Fade left cascade>
                         <ul className='cart-items'>
                             {
-                                cartItems.map( item => (
+                                cartItems.map( (item) => (
                                     <li key={item._id}>
                                         <div>
                                             <img src={ item.image } alt= { item.title } />
@@ -92,7 +154,12 @@ class Cart extends Component {
                                         )}
                                     </div>
                                     {/* 6. cart - make onclick to create proceed functionn, when clicked, it showing the form , now, define a constructor*/}
-                                    <button onClick={ () =>  {this.setState( { showCheckOut : true } ) } } className='button primary'>
+                                    <button 
+                                        onClick={ () => {
+                                            this.setState(
+                                                { showCheckOut : true } 
+                                            ) 
+                                        } } className='button primary'>
                                         Proceed
                                     </button>
                                 </div>
@@ -132,7 +199,7 @@ class Cart extends Component {
                                                     </li>
                                                     <li>
                                                         <button type = 'submit' className='button primary'>
-                                                            Create Order
+                                                            Checkout
                                                         </button>
                                                     </li>
                                                     {/* 9. checkout - create handle input function & create order*/}
@@ -153,7 +220,8 @@ class Cart extends Component {
 
 export default connect (
     ( state ) => ({
+        order : state.order.order,
         cartItems : state.cart.cartItems,
     }),
-    { removeFromCart } 
+    { removeFromCart, createOrder, clearOrder } 
 ) (Cart) //2f. cart-redux - go to the store

@@ -8,3 +8,7 @@ export const SORT_PRODUCT_BY_PRICE = 'SORT_PRODUCT_BY_PRICE'
 export const ADD_TO_CART = 'ADD_TO_CART'
 export const REMOVE_FROM_CART = 'REMOVE_FROM_CART'
 // 1a. cart-redux - actions/cartActions.js
+
+export const CREATE_ORDER = 'CREATE_ORDER'
+export const CLEAR_ORDER = 'CLEAR_ORDER'
+export const CLEAR_CART = 'CLEAR_CART' // 3a. createorder - create an actions
