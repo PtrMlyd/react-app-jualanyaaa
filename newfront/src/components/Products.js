@@ -9,6 +9,7 @@ import Modal from 'react-modal'
 import Zoom from 'react-reveal/Zoom'
 import { connect } from 'react-redux'
 import { fetchProducts } from '../redux/actions/productAction'
+import { addToCart } from '../redux/actions/cartAction' //2h. cart-redux - to the app.js to remoce property of cart
 
 // 12. redux - remove export default, and add connect in the end
 class Products extends Component {
@@ -102,7 +103,7 @@ class Products extends Component {
                                         </p>
                                         <p>
                                             Available Sizes: {" "}
-                                            { product.size.map( size => (
+                                            { product.sizes.map( size => (
                                                 <span>
                                                     {" "}
                                                     <button className='button' > { size } </button>
@@ -135,5 +136,5 @@ class Products extends Component {
 // 13. redux - connect ada 2 param, : 1. function yang menerima state yang mereturn object yang kita gunakan (products.items)<- harus sama dengan product reducer, 2.list of action yang kita gunakan, selain connect paramater yang lain itu component itu sendiri ( untuk connectting the action)
 export default connect ( 
     ( state ) => ( { products : state.products.filteredItem }),
-    { fetchProducts }
+    { fetchProducts, addToCart }
 ) (Products) //14. redux -  setelah itu kita use fetch roduct di dalam component did mount

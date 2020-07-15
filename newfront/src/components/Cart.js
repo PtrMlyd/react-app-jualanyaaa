@@ -4,8 +4,10 @@
 import React, { Component } from 'react'
 import formatCurrency from '../util'
 import Fade from 'react-reveal/Fade'
+import { removeFromCart } from '../redux/actions/cartAction';
+import { connect } from 'react-redux';
 
-export default class Cart extends Component {
+class Cart extends Component {
     // 7. checkout
     constructor( props ) {
         super(props);
@@ -148,3 +150,10 @@ export default class Cart extends Component {
         )
     }
 }
+
+export default connect (
+    ( state ) => ({
+        cartItems : state.cart.cartItems,
+    }),
+    removeFromCart
+) (Cart) //2f. cart-redux - go to the store
