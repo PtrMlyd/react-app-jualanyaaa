@@ -402,14 +402,3 @@ input{
   display:flex;
   justify-content: space-between;
 }
-.footer-media{
-  display:flex;
-  flex-direction: row;
-}
-.footer-media div{
-margin-right: 3rem;
-}
-
-/* FOOTER SCREEN END */
-
-/* for tablet start */
