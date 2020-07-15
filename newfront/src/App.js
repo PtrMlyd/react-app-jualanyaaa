@@ -43,7 +43,7 @@ class App extends React.Component {
                         <Products />
                     </div>
                     <div className='content-cart'>
-                        <Cart />
+                        <Cart /> {/* if item.slice error. go the cart.Action to change state into the value of the cart from store */}
                     </div>
                 </div> 
             </main>

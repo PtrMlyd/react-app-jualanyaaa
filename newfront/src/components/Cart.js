@@ -35,22 +35,22 @@ class Cart extends Component {
             name : this.state.name,
             email : this.state.email,
             address : this.state.address,
-            cart : this.state.cart
+            cartItems : this.state.cartItems
         }   
         // 14. checkout - and then pass to create order function for app.js
         this.props.createOrder(order) // 15. checkout - go to app.js
     }
 
     render() {
-        const { cart } = this.props
+        const { cartItems } = this.props
         return (
             <div>
                 { 
-                    cart.length === 0 
+                    cartItems.length === 0 
                     ? <div className = 'cart cart-header'> Cart is Empty. </div> 
                     : (
                         <div className = 'cart cart-header'>
-                             you have { cart.length } in the cart.
+                             you have { cartItems.length } in the cart.
                         </div>    
                     )/* 10. cart -  styling this, go to css */ 
                 }
@@ -59,7 +59,7 @@ class Cart extends Component {
                     <Fade left cascade>
                         <ul className='cart-items'>
                             {
-                                cart.map( item => (
+                                cartItems.map( item => (
                                     <li key={item._id}>
                                         <div>
                                             <img src={ item.image } alt= { item.title } />
@@ -81,14 +81,14 @@ class Cart extends Component {
                 </div> 
                 {/* create Total item price and add condition*/}
                 {
-                    cart.length !== 0 && (
+                    cartItems.length !== 0 && (
                         <div>
                             <div className='cart'>
                                 <div className='total'>
                                     <div>
                                         Total: 
                                         { formatCurrency(
-                                            cart.reduce( ( a, c) => a + c.price * c.count, 0)
+                                            cartItems.reduce( ( a, c) => a + c.price * c.count, 0)
                                         )}
                                     </div>
                                     {/* 6. cart - make onclick to create proceed functionn, when clicked, it showing the form , now, define a constructor*/}
@@ -155,5 +155,5 @@ export default connect (
     ( state ) => ({
         cartItems : state.cart.cartItems,
     }),
-    removeFromCart
+    { removeFromCart } 
 ) (Cart) //2f. cart-redux - go to the store

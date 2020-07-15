@@ -1,10 +1,10 @@
 import { ADD_TO_CART, REMOVE_FROM_CART } from "../types";
 
 // 2. cart-redux - create action from this type, add to cart ada 2 param (1. item yang didalam cart dan product)
-export const addToCart = ( items, product ) => ( dispatch, getSate ) => {
+export const addToCart = ( product ) => ( dispatch, getSate ) => { // 2i. cart-redux - add getstate and remove 'item' to return value of cart by redux
     // 2a. cart-redux - kita buat clone cartitems
-    const cartItems = items.slice()
-    // const cartItems = getSate().cart.cartItems.slice();
+    // const cartItems = items.slice()
+    const cartItems = getSate().cart.cartItems.slice(); // using  this
     let alreadyExists = false;
 
     //2b. cart-redux - kita buat foreach untuk cek apakah cart item yang kita masukkan sesuai dengan product yang kita inginkan
@@ -26,8 +26,8 @@ export const addToCart = ( items, product ) => ( dispatch, getSate ) => {
 
 // 2c. cart-redux - add remove from cart , same with add to cart but add a filter function
 
-export const removeFromCart = ( items, product ) => ( dispatch, getState ) => {
-    const cartItems = items
+export const removeFromCart = ( product ) => ( dispatch, getState ) => {
+    const cartItems = getState().cart.cartItems
         .slice()
         .filter(( x ) => x._id !== product._id ); 
     dispatch({
