@@ -28,16 +28,18 @@ function ShoppingCartScreen (props) {
     }, [])
 
     return <div className="cart">
-        <div className='cart-list'>
-            <ul className="cart-list-container">
-                <li>
-                    <h3>
-                        Shopping Cart
-                    </h3>                   
-                    <div>
-                        Price
-                    </div>
-                </li>
+
+        <table className='table'>
+            <thead >
+                <tr>
+                    <th className='cart-head'>PRODUCT</th>
+                    <th>PRICE</th>
+                    <th>QUANTITY</th>
+                    <th>TOTAL</th>
+                    <th>ACTION</th>
+                </tr>
+            </thead>
+            <tbody>
                 {
                     cartItems.length === 0 ?
                     <div>
@@ -45,48 +47,53 @@ function ShoppingCartScreen (props) {
                     </div>
                     :
                     cartItems.map( item => 
-                        <li key={item.id}>
-                            <div className="cart-image" >
-                                <img src={item.image} alt={item.name} />
-                            </div>
-                            <div className="cart-name">
-                                <div>
-                                    <Link to={`/product/${item.id}`} >
-                                    {   item.name}
-                                    </Link> 
+                        <tr key={item.id} >
+                            <td className="cart-na">
+                                <div className="cart-image"> 
+                                    <img src={item.image} alt={item.name} />
                                 </div>
-                                <div>
-                                    Qty:
-                                    <select value={item.qty} onChange={ (e) => dispatch(addToCart(item.id, e.target.value)) }>
-                                        {[...Array(item.inStock).keys()].map( x => 
-                                        <option key={ x + 1 } value={ x + 1 }> { x + 1} </option>
-                                        
-                                             )}
-                                    </select>
-                                    <button onClick={ () => deleteItem(item.id)} className="button" >
-                                        Delete
-                                    </button>
+                                <div className="cart-name">
+                                    <p> Name : {item.name} </p>
+                                    <p> Id : {item.id} </p>
+                                    <p> Category : {item.category} </p>
                                 </div>
-                            </div>
-                            <div className="cart-price">
-                                IDR {item.price}
-                            </div>
-                        </li>
+                            </td>
+                            <td> {item.price} </td>
+                            <td> 
+                                <select value={item.qty} onChange={ (e) => dispatch(addToCart(item.id, e.target.value)) }>
+                                    {[...Array(item.inStock).keys()].map( x => 
+                                    <option key={ x + 1 } value={ x + 1 }> { x + 1} </option>
+                                    )}
+                                </select>
+                            </td>
+                            <td> {item.price * item.qty} </td>
+                            <td>
+                                <button onCtbodyck={ () => deleteItem(item.id)} className="button" >
+                                    Delete
+                                </button>
+                            </td>
+                        </tr>
                     )
-                }
-            </ul>
-        </div>
-        <div className="cart-action">
-            <div >
-             <input type='text'  placeholder="YOUR VOUCHER CODE"></input>
-                <h3>
-                Subtotal 
-                :
-                IDR {cartItems.reduce((a, c) => a + c.price * c.qty, 0)}
-                </h3>
-                <button onClick={checkOutItem} className='button primary full-width' disabled ={ cartItems.length === 0}>
+                }              
+            </tbody>
+        </table>
+        <div className='cartfoot'>
+            <div className='cartfootbut'>
+                <Link to='/shop'>
+                    <button className='button secondary '>
+                        Back to Shop
+                    </button>
+                </Link>
+                <button onClick={checkOutItem} className='button secondary' disabled ={ cartItems.length === 0}>
                     Proceed to Check Out
                 </button>
+            </div>
+            <div >
+                <h3>
+                    Subtotal 
+                    :
+                    IDR {cartItems.reduce((a, c) => a + c.price * c.qty, 0)}
+                </h3>
             </div>
         </div>
     </div>
