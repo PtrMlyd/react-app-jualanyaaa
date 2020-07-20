@@ -33,8 +33,3 @@ frontend/build/**
 yarn-lock.json
 frontend/yarn-lock.json
 
-newfront/package-lock.json
-newBackend/package-lock.json
-newfront/package.json
-newBackend/package.json
-frontend/package-lock.json
