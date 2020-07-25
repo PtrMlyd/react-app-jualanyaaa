@@ -32,7 +32,7 @@ const Product = mongoose.model(
         _id : { type : String, default : shortid.generate }, // let's run the postman for the test
         title : String,
         description : String, 
-        image : String,
+        image : [String],
         price : Number,
         sizes : [String], 
     })

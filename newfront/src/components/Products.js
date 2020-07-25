@@ -61,7 +61,7 @@ class Products extends Component {
                                             href={ `#${ product._id }` } 
                                             onClick = { () => this.openModal(product)} 
                                         >
-                                            <img src = { product.image } alt= { product.title }  />
+                                            <img src = { product.image[0] } alt= { product.title }  />
                                         </a>
                                         <p>
                                             { product.title }
@@ -93,7 +93,7 @@ class Products extends Component {
                                     x
                                 </button>
                                 <div className = 'product-details'>
-                                    <img src = { product.image } alt = { product.title } />
+                                    <img src = { product.image[0] } alt = { product.title } />
                                     <div className = 'product-details-des'> 
                                         <p>
                                             <strong> { product.title } </strong>

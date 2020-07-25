@@ -3,10 +3,12 @@
         {
             "_id": "1",
             "title" : "Casual Slim Shirt Deep Gray Edition",
-            "image" : "/images/products/nik1.jpg",
-            "categories" : "Shirt",
+            "image" : [
+                "/images/products/gamis1.jpg","/images/products/gamis1.jpg","/images/products/gamis1.jpg","/images/products/gamis1.jpg"
+            ],
+            "category" : "Shirt",
             "brand" : "H&M",
-            "size" :[
+            "sizes" :[
                 "S","M","L","XL","XXL"
             ],
             "price" : 190000,
@@ -16,10 +18,12 @@
         {
             "_id": "2",
             "title" : "Casual Shirt Blue Ocean Edition",
-            "image" : "/images/products/nike2.jpg",
-            "categories" : "Shirt",
+            "image" : [
+                "/images/products/nike1.jpg","/images/products/nike1.jpg","/images/products/nike1.jpg","/images/products/gamis1.jpg"
+            ],
+            "category" : "Shirt",
             "brand" : "Crocodile",
-            "size" :[
+            "sizes" :[
                 "S","M","L","XXL"
             ],
             "price" : 140000,
@@ -29,10 +33,12 @@
         {
             "_id": "3",
             "title" : "Japanase Casual Slim Shirt Navy Edition",
-            "image" : "/images/products/nike3.jpg",
-            "categories" : "Shirt",
+            "image" : [
+                "/images/products/nike2.jpg","/images/products/nike2.jpg","/images/products/nike2.jpg","/images/products/gamis1.jpg"
+            ],
+            "category" : "Shirt",
             "brand" : "Kamikaze",
-            "size" :[
+            "sizes" :[
                 "S","L","XL","XXL"
             ],
             "price" : 210000,
@@ -42,10 +48,12 @@
         {
             "_id": "4",
             "title" : "Japanase Casual Slim Shirt Navy Edition",
-            "image" : "/images/products/koko1.jpg",
-            "categories" : "Koko",
+            "image" : [
+                "/images/products/nike3.jpg","/images/products/nike3.jpg","/images/products/nike3.jpg","/images/products/gamis1.jpg"
+            ],
+            "category" : "Koko",
             "brand" : "Kamikaze",
-            "size" :[
+            "sizes" :[
                 "L","XL","XXL"
             ],
             "price" : 250000,
@@ -55,10 +63,12 @@
         {
             "_id": "5",
             "title" : "Japanase Casual Slim Shirt Navy Edition",
-            "image" : "/images/products/koko2.jpg",
-            "categories" : "Koko",
+            "image" : [
+                "/images/products/nike4.jpg","/images/products/nike4.jpg","/images/products/nike4.jpg","/images/products/nike4.jpg"
+            ],
+            "category" : "Koko",
             "brand" : "KurtaSyam",
-            "size" :[
+            "sizes" :[
                 "S","XL","XXL"
             ],
             "price" : 110000,
@@ -68,10 +78,12 @@
         {
             "_id": "6",
             "title" : "Muslim Man Shirt with a caligraphy shoulder ",
-            "image" : "/images/products/koko3.jpg",
-            "categories" : "Koko",
+            "image" : [
+                "/images/products/koko2.jpg","/images/products/koko2.jpg","/images/products/koko2.jpg","/images/products/koko2.jpg"
+            ],
+            "category" : "Koko",
             "brand" : "Syamsuri Fashion",
-            "size" :[
+            "sizes" :[
                 "S","M"
             ],
             "price" : 350000,
